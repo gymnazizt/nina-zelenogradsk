@@ -39,6 +39,28 @@ details.q>div{padding:0 0 22px;color:#DCE8F8;max-width:760px}
 .place{flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}
 .step{display:flex;gap:14px;align-items:flex-start;padding:12px 0;border-bottom:1px solid #2B64C7}
 .step b{flex:none;width:30px;height:30px;border-radius:999px;background:#7DBAFF;color:#043385;display:flex;align-items:center;justify-content:center;font-size:14px}
+/* glass */
+section[style*="rgba(2,38,100,0.85)"],
+section[style*="rgba(2, 38, 100, 0.85)"]{background:linear-gradient(180deg,rgba(255,255,255,0.10),rgba(255,255,255,0.02) 30%),rgba(5,40,110,0.52) !important;-webkit-backdrop-filter:blur(16px) saturate(140%);backdrop-filter:blur(16px) saturate(140%);border-top:1px solid rgba(255,255,255,0.28);border-bottom:1px solid rgba(255,255,255,0.12);box-shadow:inset 0 1px 0 rgba(255,255,255,0.22),0 -10px 30px rgba(0,10,40,0.25)}
+:not(section)[style*="rgba(2,38,100,0.85)"],
+:not(section)[style*="rgba(2, 38, 100, 0.85)"],
+:not(section)[style*="rgba(0,27,73,0.68)"],
+:not(section)[style*="rgba(0, 27, 73, 0.68)"],
+.place,
+.step-card{background:linear-gradient(145deg,rgba(255,255,255,0.22),rgba(255,255,255,0.06) 38%,rgba(255,255,255,0.02)),rgba(8,50,130,0.50) !important;-webkit-backdrop-filter:blur(20px) saturate(150%);backdrop-filter:blur(20px) saturate(150%);border:1px solid rgba(255,255,255,0.32) !important;box-shadow:0 14px 34px rgba(0,10,40,0.38),0 2px 6px rgba(0,10,40,0.25),inset 0 1px 0 rgba(255,255,255,0.45),inset 0 -1px 0 rgba(255,255,255,0.08)}
+.place{transition:transform .2s ease,box-shadow .2s ease}
+.place:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,10,40,0.45),inset 0 1px 0 rgba(255,255,255,0.5)}
+.day{background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.26);box-shadow:inset 0 1px 0 rgba(255,255,255,0.25)}
+.day.blank{background:transparent;box-shadow:none;border:0}
+.day.rng{background:rgba(70,140,255,0.62)}
+.day.sel{background:#FFFFFF;box-shadow:0 4px 14px rgba(0,10,40,0.4)}
+.g,.sea a{box-shadow:0 10px 28px rgba(0,10,40,0.4),0 0 0 1px rgba(255,255,255,0.22)}
+details.q{border-bottom-color:rgba(255,255,255,0.22)}
+@media (prefers-reduced-motion:reduce){.place{transition:none}}
+@keyframes catblink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
+.catEye{transform-box:fill-box;transform-origin:center;animation:catblink 5s infinite}
+.peek{filter:drop-shadow(0 4px 8px rgba(0,10,40,0.45))}
+@media (prefers-reduced-motion:reduce){.catEye{animation:none}}
 input[type=date]{color-scheme:dark}
 #gallery,#booking>div>div:first-child,#around{text-shadow:0 0 6px rgba(0,0,0,0.7),0 1px 14px rgba(0,0,0,0.85)}
 .hero-bg{background:linear-gradient(rgba(1,30,80,0.60),rgba(1,30,80,0.80)),url(images/flat-09.jpg) center center / cover no-repeat}
@@ -80,6 +102,7 @@ input[type=date]{color-scheme:dark}
       <a href="#favorites" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Места</a>
       <a href="#sea" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Море</a>
       <a href="#cats" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Город кошек</a>
+      <a href="#rules" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Кодекс</a>
       <a href="#reviews" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Отзывы</a>
       <a href="#faq" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Вопросы</a>
       <a href="#contacts" style="color:#DCE8F8;text-decoration:none;font-weight:500;font-size:14px;padding:10px 0">Контакты</a>
@@ -93,7 +116,7 @@ input[type=date]{color-scheme:dark}
     <p style="font-size:clamp(16px,2.4vw,19px);color:#DCE8F8;margin:0 0 40px;max-width:600px">Современная квартира в самом сердце Зеленоградска на улице Октябрьской: несколько минут пешком до моря, площади Роза ветров и главной набережной.</p>
     <div style="display:flex;flex-wrap:wrap;gap:12px;margin-bottom:56px">
       <a href="{{tgLink}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px">Написать в Telegram</a>
-      <a href="#booking" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid #5381D2">Запросить даты</a>
+      <a href="{{bookingLink}}" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid #5381D2">Запросить даты</a>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:20px 48px;border-top:1px solid rgba(242,240,235,0.28);padding-top:28px">
       <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:600">до 3</div><div style="font-size:14px;color:#DCE8F8">гостей</div></div>
@@ -226,10 +249,11 @@ input[type=date]{color-scheme:dark}
           <p style="margin:0;font-size:14px;color:#C5D3E8;max-width:480px">Полосатые дни заняты. В день выезда другого гостя заехать можно: квартира уже свободна с 15:00.</p>
         </sc-if>
         <sc-if value="{{noBusy}}" hint-placeholder-val="{{true}}">
-          <p style="margin:0;font-size:14px;color:#C5D3E8;max-width:480px">Нина пока не отметила занятые даты, поэтому календарь показывает всё свободным. Свободны ли выбранные дни, подтвердит она в Telegram.</p>
+          <p style="margin:0;font-size:14px;color:#C5D3E8;max-width:480px">Нина пока не отметила занятые даты, поэтому календарь показывает всё свободным. Свободны ли выбранные дни, подтвердит она в мессенджере.</p>
         </sc-if>
       </div>
-      <div style="flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(16px,4vw,28px);box-sizing:border-box;text-shadow:none">
+      <div style="position:relative;flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(16px,4vw,28px);box-sizing:border-box;text-shadow:none">
+        <svg class="peek" viewBox="0 0 90 46" width="84" height="43" aria-hidden="true" style="position:absolute;top:-41px;right:36px;pointer-events:none"><path d="M12 26 L14 3 L33 15 Z M78 26 L76 3 L57 15 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><path d="M17 20 L18 9 L26 15 Z M73 20 L72 9 L64 15 Z" fill="#1E4A9A"/><path d="M5 46 C5 18 20 8 45 8 C70 8 85 18 85 46 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><ellipse class="catEye" cx="32" cy="30" rx="4" ry="5" fill="#7DBAFF"/><ellipse class="catEye" cx="58" cy="30" rx="4" ry="5" fill="#7DBAFF"/><path d="M42 38 L48 38 L45 42 Z" fill="#E7A6B8"/><path d="M26 40 L10 38 M26 43 L12 46 M64 40 L80 38 M64 43 L78 46" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/></svg>
         <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:16px">
           <button onClick="{{prevMonth}}" aria-label="Предыдущий месяц" style="width:44px;height:44px;border-radius:999px;border:1px solid #5381D2;background:#011D4D;color:#FFFFFF;font-size:20px;cursor:pointer">‹</button>
           <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600">{{monthTitle}}</div>
@@ -253,9 +277,11 @@ input[type=date]{color-scheme:dark}
         <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#7DBAFF;margin-bottom:16px">Быстрый запрос</div>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Запрос на бронь</h2>
         <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты и число гостей: откроется Telegram с готовым сообщением для Нины. Останется нажать «Отправить».</p>
+        <p style="margin:0 0 12px;font-size:14px;color:#C5D3E8;max-width:480px">Кот-консультант на подтверждение брони не уполномочен: его «мяу» означает «да», но последнее слово всё равно за Ниной.</p>
         <p style="margin:0;font-size:14px;color:#C5D3E8;max-width:480px">Это запрос, а не оплата: мы пока только знакомимся. Бронь подтверждается после ответа Нины.</p>
       </div>
-      <div style="flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(20px,4vw,32px);box-sizing:border-box">
+      <div style="position:relative;flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(20px,4vw,32px);box-sizing:border-box">
+        <svg class="peek" viewBox="0 0 90 46" width="84" height="43" aria-hidden="true" style="position:absolute;top:-41px;right:36px;pointer-events:none"><path d="M12 26 L14 3 L33 15 Z M78 26 L76 3 L57 15 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><path d="M17 20 L18 9 L26 15 Z M73 20 L72 9 L64 15 Z" fill="#1E4A9A"/><path d="M5 46 C5 18 20 8 45 8 C70 8 85 18 85 46 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><ellipse class="catEye" cx="32" cy="30" rx="4" ry="5" fill="#7DBAFF"/><ellipse class="catEye" cx="58" cy="30" rx="4" ry="5" fill="#7DBAFF"/><path d="M42 38 L48 38 L45 42 Z" fill="#E7A6B8"/><path d="M26 40 L10 38 M26 43 L12 46 M64 40 L80 38 M64 43 L78 46" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/></svg>
         <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px">
           <div style="flex:1 1 160px;min-width:0">
             <label for="ci" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Заезд</label>
@@ -447,6 +473,41 @@ input[type=date]{color-scheme:dark}
   </section>
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:48px;background:#013389"><path d="M0 34 C120 6 240 6 360 34 S600 62 720 34 S960 6 1080 34 S1320 62 1440 34 V60 H0Z" fill="#022664" fill-opacity="0.82"/></svg>
 
+  <!-- RULES -->
+  <section id="rules" style="max-width:1120px;margin:0 auto;padding:80px 20px;box-sizing:border-box">
+    <div style="text-shadow:0 0 6px rgba(0,0,0,0.7),0 1px 14px rgba(0,0,0,0.85)">
+      <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#7DBAFF;margin-bottom:16px">Кодекс гостя</div>
+      <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Шесть правил хорошего отпуска</h2>
+      <p style="margin:0 0 32px;font-size:17px;color:#DCE8F8;max-width:620px">Утверждено хозяйкой и одобрено котом (лёжа).</p>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px">
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Тапочки обязательны</div><div style="font-size:15px;color:#DCE8F8">Кот на подоконнике по желанию. А вот тапочки одноразовые, и они ждут вас на входе.</div></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Здесь шумит только море</div><div style="font-size:15px;color:#DCE8F8">Остальное по вашему желанию. Отдельный вход, поэтому подъезд не услышит ни смеха, ни песен.</div></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Кофемашина любит тишину</div><div style="font-size:15px;color:#DCE8F8">До первой чашки с ней лучше не разговаривать: она сосредоточена, как кот перед прыжком.</div></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Выезд до 12:00</div><div style="font-size:15px;color:#DCE8F8">Чайки считают это личным вызовом, но график мы уважаем и вас просим.</div></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Песок это сувенир</div><div style="font-size:15px;color:#DCE8F8">Если вы привезли его с пляжа, это нормально. Но на коврик у входа лучше стряхнуть.</div></div>
+      </div>
+      <div style="flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;gap:16px;align-items:flex-start">
+        <svg viewBox="0 0 32 32" width="30" height="30" aria-hidden="true" style="flex:none"><ellipse cx="16" cy="21" rx="7.5" ry="6" fill="#7DBAFF"/><ellipse cx="6.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/><ellipse cx="12" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="20" cy="8.5" rx="3" ry="4.3" fill="#7DBAFF"/><ellipse cx="25.5" cy="14" rx="3" ry="4" fill="#7DBAFF"/></svg>
+        <div><div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:24px;font-weight:600;line-height:1.15;margin-bottom:6px">Поздоровайтесь с котом</div><div style="font-size:15px;color:#DCE8F8">Если на улице встретите местного кота, поздоровайтесь: он здесь живёт дольше вас.</div></div>
+      </div>
+    </div>
+  </section>
+
   <!-- REVIEWS -->
   <section id="reviews" style="max-width:1120px;margin:0 auto;padding:80px 20px;box-sizing:border-box">
     <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Отзывы гостей</h2>
@@ -461,18 +522,36 @@ input[type=date]{color-scheme:dark}
           </div>
         </sc-for>
       </div>
+      <div style="margin-top:24px"><button onClick="{{openReview}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;font-family:inherit">Оставить отзыв</button></div>
     </sc-if>
     <sc-if value="{{noReviews}}" hint-placeholder-val="{{true}}">
       <div style="background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(24px,5vw,48px);display:flex;flex-wrap:wrap;gap:20px 32px;align-items:center;justify-content:space-between">
         <div style="flex:1 1 320px;min-width:0">
           <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(26px,4vw,34px);font-weight:600;line-height:1.15;margin-bottom:8px">Станьте первым гостем с отзывом</div>
-          <div style="font-size:16px;color:#DCE8F8">Отзывы появятся здесь после первых заездов. Пока можно задать любой вопрос Нине лично.</div>
+          <div style="font-size:16px;color:#DCE8F8">Здесь появятся отзывы тех, кто уже останавливался в квартире. Жили у Нины? Поделитесь впечатлениями.</div>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:12px">
-          <a href="#booking" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px">Запросить даты</a>
-          <a href="{{tgLink}}" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:13px 24px;border-radius:999px;border:1px solid #5381D2">Написать Нине</a>
+          <button onClick="{{openReview}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;font-family:inherit">Оставить отзыв</button>
         </div>
       </div>
+    </sc-if>
+
+    <sc-if value="{{reviewOpen}}" hint-placeholder-val="{{false}}">
+      <div id="review-form" style="margin-top:24px;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(20px,4vw,32px);box-sizing:border-box;max-width:640px">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(24px,4vw,30px);font-weight:600;margin-bottom:6px">Ваш отзыв</div>
+        <p style="margin:0 0 16px;font-size:15px;color:#C5D3E8">Отзыв уйдёт Нине в Telegram. После проверки она добавит его в этот блок.</p>
+        <label for="rv-name" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:6px">Ваше имя</label>
+        <input id="rv-name" type="text" maxlength="60" placeholder="Например, Анна, Москва" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit;font-size:16px;margin-bottom:14px">
+        <label for="rv-text" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:6px">Отзыв</label>
+        <textarea id="rv-text" rows="5" maxlength="800" placeholder="Что понравилось, что можно улучшить" style="width:100%;box-sizing:border-box;padding:12px 14px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit;font-size:16px;resize:vertical;margin-bottom:16px"></textarea>
+        <div style="display:flex;flex-wrap:wrap;gap:12px">
+          <button onClick="{{sendReview}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:15px 26px;border-radius:999px;border:0;cursor:pointer;font-family:inherit">Отправить отзыв в Telegram</button>
+          <button onClick="{{closeReview}}" style="background:transparent;color:#FFFFFF;font-weight:600;font-size:16px;padding:14px 24px;border-radius:999px;border:1px solid #5381D2;cursor:pointer;font-family:inherit">Отмена</button>
+        </div>
+      </div>
+    </sc-if>
+    <sc-if value="{{reviewSent}}" hint-placeholder-val="{{false}}">
+      <div style="margin-top:24px;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:18px;padding:20px 24px;max-width:640px;color:#DCE8F8">Спасибо! Если Telegram открылся, останется нажать «Отправить». Нина проверит отзыв и добавит его сюда.</div>
     </sc-if>
   </section>
 
@@ -491,6 +570,9 @@ input[type=date]{color-scheme:dark}
         <details class="q"><summary>Далеко ли до моря?</summary><div>Несколько минут пешком. Чайки не успевают заскучать, пока вы идёте.</div></details>
         <details class="q"><summary>Что взять с собой?</summary><div>Хорошее настроение и купальник, остальное найдётся: кофемашина, Wi-Fi, Smart TV, пляжный зонт и стульчики. Тапочки одноразовые уже ждут.</div></details>
         <details class="q"><summary>Правда ли, что в городе все любят кошек?</summary><div>Город так и называют, поэтому встреч с пушистыми жителями не избежать. Гладить рекомендуется по взаимному согласию.</div></details>
+        <details class="q"><summary>Можно ли погладить местного кота?</summary><div>Если кот сам подойдёт, это его решение, а не ваше. Если не подошёл, пожелайте ему хорошего дня и идите дальше: уважение к котам в Зеленоградске вопрос репутации.</div></details>
+        <details class="q"><summary>Чайка украла мороженое: что делать?</summary><div>Страховка на этот случай не предусмотрена. Чайки на Балтике считаются стихийным бедствием, так что берегите мороженое и держите его подальше от неба.</div></details>
+        <details class="q"><summary>А если не захочется уезжать?</summary><div>Это самая частая проблема. Напишите Нине заранее: если даты свободны, она продлит проживание. Кот в таких случаях обычно уже согласен.</div></details>
         <details class="q"><summary>Можно ли с питомцем или маленьким ребёнком?</summary><div>Лучше уточнить заранее: <a href="{{tgLink}}" target="_blank" rel="noopener">напишите Нине в Telegram</a>, и она ответит по вашей ситуации.</div></details>
       </div>
     </div>
@@ -498,7 +580,8 @@ input[type=date]{color-scheme:dark}
 
   <!-- CONTACTS -->
   <section id="contacts" style="max-width:1120px;margin:0 auto;padding:80px 20px 40px;box-sizing:border-box">
-    <div style="border:1px solid #2B64C7;border-radius:28px;padding:clamp(28px,6vw,64px);background:rgba(2,38,100,0.85)">
+    <div style="position:relative;border:1px solid #2B64C7;border-radius:28px;padding:clamp(28px,6vw,64px);background:rgba(2,38,100,0.85)">
+      <svg class="peek" viewBox="0 0 90 46" width="84" height="43" aria-hidden="true" style="position:absolute;top:-41px;right:clamp(24px,8vw,90px);pointer-events:none"><path d="M12 26 L14 3 L33 15 Z M78 26 L76 3 L57 15 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><path d="M17 20 L18 9 L26 15 Z M73 20 L72 9 L64 15 Z" fill="#1E4A9A"/><path d="M5 46 C5 18 20 8 45 8 C70 8 85 18 85 46 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><ellipse class="catEye" cx="32" cy="30" rx="4" ry="5" fill="#7DBAFF"/><ellipse class="catEye" cx="58" cy="30" rx="4" ry="5" fill="#7DBAFF"/><path d="M42 38 L48 38 L45 42 Z" fill="#E7A6B8"/><path d="M26 40 L10 38 M26 43 L12 46 M64 40 L80 38 M64 43 L78 46" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/></svg>
       <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,56px);line-height:1.1;margin:0 0 16px">Контакты</h2>
       <p style="margin:0 0 32px;font-size:clamp(16px,2.4vw,19px);color:#C5D3E8;max-width:560px">Напишите мне даты поездки и количество гостей: я подтвержу, свободна ли квартира, и пришлю всё для дистанционного заселения. У меня нет бота, зато есть чувство юмора.</p>
       <a href="{{tgLink}}" style="display:inline-block;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:17px;padding:18px 32px;border-radius:999px">Написать в Telegram</a>
@@ -511,7 +594,7 @@ input[type=date]{color-scheme:dark}
 
   <footer style="max-width:1120px;margin:0 auto;padding:16px 20px 40px;box-sizing:border-box;color:#C5D3E8;font-size:14px">
     <div style="display:flex;flex-wrap:wrap;gap:8px 24px;align-items:center;justify-content:space-between;border-top:1px solid #2B64C7;padding-top:20px">
-      <span>Нина · квартира у моря в городе кошек, Зеленоградске<br><span style="font-size:13px">Ни одна чайка при создании сайта не пострадала.</span></span>
+      <span>Нина · квартира у моря в городе кошек, Зеленоградске<br><span style="font-size:13px">Ни одна чайка при создании сайта не пострадала. Один кот проверил его и одобрил (лёжа).</span></span>
       <span style="display:flex;flex-wrap:wrap;gap:8px 24px">
         <a href="{{tgLink}}" target="_blank" rel="noopener" style="color:#DCE8F8;text-decoration:none">Telegram</a>
         <a href="#booking" style="color:#DCE8F8;text-decoration:none">Запрос на бронь</a>
@@ -525,12 +608,18 @@ input[type=date]{color-scheme:dark}
 /* ===== НАСТРОЙКИ: меняйте значения в кавычках ===== */
 const CONFIG = {
   "telegramUser": "rasstriga70",
-  "review1Text": "Отличная квартира, до моря пять минут!",
-  "review1Author": "Анна, Москва",
+  "review1Text": "",
+  "review1Author": "",
   "review2Text": "",
   "review2Author": "",
   "review3Text": "",
   "review3Author": "",
+  "review4Text": "",
+  "review4Author": "",
+  "review5Text": "",
+  "review5Author": "",
+  "review6Text": "",
+  "review6Author": "",
   "busyDates": "",
   "place1Name": "Закат на променаде",
   "place1Note": "Лучшее время приходить за час до заката: небо над водой стоит того.",
@@ -552,7 +641,7 @@ class DCLogic { constructor(props){ this.props = props; } setState(o){ this.stat
 class Component extends DCLogic {
   constructor(props) {
     super(props);
-    this.state = { checkin: '', checkout: '', guests: 2, month: 0 };
+    this.state = { checkin: '', checkout: '', guests: 2, month: 0, reviewOpen: false, reviewSent: false };
   }
   renderVals() {
     const st = this.state || {};
@@ -560,7 +649,7 @@ class Component extends DCLogic {
     const checkout = st.checkout || '';
     const guests = st.guests || 2;
     const u = String(this.props.telegramUser ?? 'rasstriga70').replace(/^@/, '').trim();
-    const reviews = [1, 2, 3].map((i) => ({
+    const reviews = [1, 2, 3, 4, 5, 6].map((i) => ({
       text: String(this.props['review' + i + 'Text'] ?? '').trim(),
       author: String(this.props['review' + i + 'Author'] ?? '').trim()
     })).filter((r) => r.text).map((r) => ({ text: r.text, author: r.author || 'Гость' }));
@@ -638,6 +727,23 @@ class Component extends DCLogic {
       monthTitle: monthNames[first.getUTCMonth()] + ' ' + first.getUTCFullYear(),
       prevMonth: () => this.setState({ month: Math.max(0, off - 1) }),
       nextMonth: () => this.setState({ month: Math.min(14, off + 1) }),
+      reviewOpen: !!st.reviewOpen,
+      reviewSent: !!st.reviewSent,
+      openReview: () => this.setState({ reviewOpen: true, reviewSent: false }),
+      closeReview: () => this.setState({ reviewOpen: false }),
+      sendReview: () => {
+        const t = document.getElementById('rv-text');
+        const nm = document.getElementById('rv-name');
+        const text = t ? t.value.trim() : '';
+        if (!text) { if (t) { t.style.borderColor = '#FFC2B0'; t.focus(); } return; }
+        const name = nm ? nm.value.trim() : '';
+        const m = 'Отзыв о квартире в Зеленоградске' + (name ? ' от гостя ' + name : '') + ': «' + text + '»';
+        const a = document.createElement('a');
+        a.href = base + '?text=' + encodeURIComponent(m);
+        a.target = '_blank'; a.rel = 'noopener';
+        document.body.appendChild(a); a.click(); a.remove();
+        this.setState({ reviewOpen: false, reviewSent: true });
+      },
       tgLink: base,
       tgHandle: '@' + u,
       reviews: reviews,
