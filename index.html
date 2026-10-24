@@ -64,6 +64,9 @@ details.q{border-bottom-color:rgba(255,255,255,0.22)}
 @media (prefers-reduced-motion:reduce){.catEye{animation:none}}
 [style*="background:#FFFFFF"],.day.sel,input,textarea,button{text-shadow:none !important}
 input[type=date]{color-scheme:dark}
+input[type=date]::-webkit-date-and-time-value{text-align:left;margin:0;min-width:0}
+input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
+#booking label{white-space:nowrap}
 #gallery,#booking>div>div:first-child,#around{text-shadow:0 0 6px rgba(0,0,0,0.7),0 1px 14px rgba(0,0,0,0.85)}
 .hero-bg{background:linear-gradient(rgba(1,30,80,0.42),rgba(1,30,80,0.72)),url(images/hero-main.jpg) 38% 50% / cover no-repeat}
 .g{flex:1 1 calc(25% - 11px);height:340px}
@@ -290,14 +293,14 @@ input[type=date]{color-scheme:dark}
       </div>
       <div style="position:relative;flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(20px,4vw,32px);box-sizing:border-box">
         <svg class="peek" viewBox="0 0 90 46" width="84" height="43" aria-hidden="true" style="position:absolute;top:-41px;right:36px;pointer-events:none"><path d="M12 26 L14 3 L33 15 Z M78 26 L76 3 L57 15 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><path d="M17 20 L18 9 L26 15 Z M73 20 L72 9 L64 15 Z" fill="#1E4A9A"/><path d="M5 46 C5 18 20 8 45 8 C70 8 85 18 85 46 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"/><ellipse class="catEye" cx="32" cy="30" rx="4" ry="5" fill="#7DBAFF"/><ellipse class="catEye" cx="58" cy="30" rx="4" ry="5" fill="#7DBAFF"/><path d="M42 38 L48 38 L45 42 Z" fill="#E7A6B8"/><path d="M26 40 L10 38 M26 43 L12 46 M64 40 L80 38 M64 43 L78 46" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"/></svg>
-        <div style="display:flex;flex-wrap:wrap;gap:16px;margin-bottom:20px">
-          <div style="flex:1 1 160px;min-width:0">
+        <div style="display:flex;flex-wrap:nowrap;gap:10px;margin-bottom:20px">
+          <div style="flex:1 1 0;min-width:0">
             <label for="ci" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Заезд</label>
-            <input id="ci" type="date" value="{{checkin}}" min="{{today}}" onChange="{{setCheckin}}" style="width:100%;box-sizing:border-box;min-height:48px;padding:0 14px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit">
+            <input id="ci" type="date" value="{{checkin}}" min="{{today}}" onChange="{{setCheckin}}" style="display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;min-height:44px;padding:0 8px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit;font-size:15px;-webkit-appearance:none;appearance:none">
           </div>
-          <div style="flex:1 1 160px;min-width:0">
+          <div style="flex:1 1 0;min-width:0">
             <label for="co" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Выезд</label>
-            <input id="co" type="date" value="{{checkout}}" min="{{minCheckout}}" onChange="{{setCheckout}}" style="width:100%;box-sizing:border-box;min-height:48px;padding:0 14px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit">
+            <input id="co" type="date" value="{{checkout}}" min="{{minCheckout}}" onChange="{{setCheckout}}" style="display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;min-height:44px;padding:0 8px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:12px;font:inherit;font-size:15px;-webkit-appearance:none;appearance:none">
           </div>
         </div>
         <div style="font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Гостей (до 3)</div>
