@@ -127,10 +127,10 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <a href="{{tgLink}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px">Написать в Telegram</a>
       <a href="{{bookingLink}}" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid #5381D2">Запросить даты</a>
       </div>
-      <div id="film" style="flex:0 0 auto;width:50vw;max-width:100%;margin-left:auto">
+      <div id="film" style="flex:1 1 100%;min-width:0;max-width:90%;margin-left:auto">
         <div id="filmbox" data-big="0" style="position:relative;width:100%;box-sizing:border-box">
-          <button id="filmbtn" onClick="{{toggleFilm}}" style="position:absolute;right:10px;top:10px;z-index:2;background:rgba(255,255,255,0.92);color:#043385;border:0;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">Развернуть</button>
-          <button id="filmsnd" onClick="{{toggleFilmSound}}" style="position:absolute;left:10px;bottom:10px;z-index:2;background:rgba(255,255,255,0.92);color:#043385;border:0;border-radius:999px;padding:7px 14px;font-size:13px;font-weight:700;cursor:pointer;font-family:inherit">Включить звук</button>
+          <button id="filmbtn" onClick="{{toggleFilm}}" title="Развернуть" aria-label="Развернуть" style="position:absolute;right:5px;top:5px;border:0;border-radius:999px;width:26px;height:26px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.92);color:#043385;z-index:2"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button>
+          <button id="filmsnd" onClick="{{toggleFilmSound}}" title="Включить звук" aria-label="Включить звук" style="position:absolute;left:5px;bottom:5px;border:0;border-radius:999px;width:26px;height:26px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.92);color:#043385;z-index:2"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg></button>
           <video autoplay muted loop playsinline preload="auto" poster="images/zelenogradsk-poster.jpg" aria-label="Видео: Зеленоградск и Балтийское море" style="display:block;width:100%;height:auto;aspect-ratio:1280/544;border-radius:12px;object-fit:cover;background:#000">
             <source src="videos/zelenogradsk-sm.mp4" type="video/mp4" media="(max-width: 900px)">
             <source src="videos/zelenogradsk-hd.mp4" type="video/mp4">
@@ -1025,7 +1025,7 @@ class Component extends DCLogic {
           v.muted = !on;
           window.__filmSound = on;
           if (on) { v.volume = 0.8; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }
-          if (btn) btn.textContent = on ? 'Выключить звук' : 'Включить звук';
+          if (btn) { btn.innerHTML = on ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg>'; btn.title = on ? 'Выключить звук' : 'Включить звук'; btn.setAttribute('aria-label', btn.title); }
         } catch (err) {}
       },
       toggleFilm: (e) => {
@@ -1036,8 +1036,8 @@ class Component extends DCLogic {
           const big = box.getAttribute('data-big') === '1';
           box.setAttribute('data-big', big ? '0' : '1');
           const wrap = document.getElementById('film');
-          if (wrap) { wrap.style.width = big ? '50vw' : '100%'; }
-          if (btn) btn.textContent = big ? 'Развернуть' : 'Свернуть';
+          if (wrap) { wrap.style.maxWidth = big ? '90%' : '100%'; }
+          if (btn) { btn.innerHTML = big ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg>'; btn.title = big ? 'Развернуть' : 'Свернуть'; btn.setAttribute('aria-label', btn.title); }
         } catch (err) {}
       },
       planWeekend: setPlan(5, 2),
