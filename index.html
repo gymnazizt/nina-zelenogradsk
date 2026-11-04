@@ -131,6 +131,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
         <div id="filmbox" data-big="0" style="position:relative;width:100%;box-sizing:border-box">
           <button id="filmbtn" onClick="{{toggleFilm}}" title="Развернуть" aria-label="Развернуть" style="position:absolute;right:5px;top:5px;border:0;border-radius:999px;width:26px;height:26px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.92);color:#043385;z-index:2"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg></button>
           <button id="filmsnd" onClick="{{toggleFilmSound}}" title="Включить звук" aria-label="Включить звук" style="position:absolute;left:5px;bottom:5px;border:0;border-radius:999px;width:26px;height:26px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.92);color:#043385;z-index:2"><svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg></button>
+          <button id="filmplay" onClick="{{filmPlay}}" title="Смотреть видео" aria-label="Смотреть видео" style="display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border:0;border-radius:999px;background:rgba(255,255,255,0.92);color:#043385;align-items:center;justify-content:center;cursor:pointer;z-index:3;padding:0"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></button>
           <video autoplay muted loop playsinline preload="auto" poster="images/zelenogradsk-poster.jpg" aria-label="Видео: Зеленоградск и Балтийское море" style="display:block;width:100%;height:auto;aspect-ratio:1280/544;border-radius:12px;object-fit:cover;background:#000">
             <source src="videos/zelenogradsk-sm.mp4" type="video/mp4" media="(max-width: 900px)">
             <source src="videos/zelenogradsk-hd.mp4" type="video/mp4">
@@ -832,10 +833,33 @@ class Component extends DCLogic {
     super(props);
     this.state = { checkin: '', checkout: '', guests: 2, month: 0, reviewOpen: false, reviewSent: false };
     this.state.lb = -1;
-    if (typeof document !== 'undefined') {
-      const kick = () => { try { document.querySelectorAll('#film video').forEach((v) => { if (!window.__filmSound) v.muted = true; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }); } catch (err) {} };
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      const kick = () => {
+        try {
+          document.querySelectorAll('#film video').forEach((v) => {
+            const pl = document.getElementById('filmplay');
+            const showPlay = () => { if (pl && v.paused) pl.style.display = 'flex'; };
+            if (!v.__bound) {
+              v.__bound = true;
+              v.addEventListener('playing', () => { if (pl) pl.style.display = 'none'; });
+              v.addEventListener('pause', () => { setTimeout(showPlay, 400); });
+            }
+            if (!window.__filmSound) { v.muted = true; }
+            v.defaultMuted = !window.__filmSound;
+            v.setAttribute('playsinline', '');
+            v.setAttribute('webkit-playsinline', '');
+            if (v.paused) {
+              const p = v.play && v.play();
+              if (p && p.catch) p.catch(showPlay);
+              setTimeout(showPlay, 1200);
+            }
+          });
+        } catch (err) {}
+      };
+      window.__filmKick = kick;
       setTimeout(kick, 300);
       setTimeout(kick, 1500);
+      setTimeout(kick, 3500);
     }
     if (typeof fetch !== 'undefined') {
       setTimeout(() => {
@@ -1016,6 +1040,17 @@ class Component extends DCLogic {
         try { document.body.style.overflow = 'hidden'; } catch (err) {}
         this.setState({ lbList: list, lb: Math.max(0, links.indexOf(a)) });
       },
+      filmPlay: (e) => {
+        try {
+          const v = document.querySelector('#film video');
+          const pl = document.getElementById('filmplay');
+          if (!v) return;
+          v.muted = !window.__filmSound;
+          const p = v.play && v.play();
+          if (p && p.catch) p.catch(() => {});
+          if (pl) pl.style.display = 'none';
+        } catch (err) {}
+      },
       toggleFilmSound: (e) => {
         try {
           const v = document.querySelector('#film video');
@@ -1024,7 +1059,7 @@ class Component extends DCLogic {
           const on = v.muted;
           v.muted = !on;
           window.__filmSound = on;
-          if (on) { v.volume = 0.8; const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); }
+          if (on) { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); const pl = document.getElementById('filmplay'); if (pl) pl.style.display = 'none'; }
           if (btn) { btn.innerHTML = on ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg>'; btn.title = on ? 'Выключить звук' : 'Включить звук'; btn.setAttribute('aria-label', btn.title); }
         } catch (err) {}
       },
@@ -1115,7 +1150,7 @@ class Component extends DCLogic {
     app.replaceChildren(frag);
     const newFilm=document.getElementById('film');
     if(oldFilm&&newFilm&&oldFilm!==newFilm){newFilm.replaceWith(oldFilm);}
-    document.querySelectorAll('#film video').forEach(v=>{if(!window.__filmSound){v.muted=true;}v.defaultMuted=true;const p=v.play&&v.play();if(p&&p.catch)p.catch(()=>{});});
+    if(window.__filmKick){window.__filmKick();}
     document.querySelectorAll('details').forEach((d,i)=>{if(open[i])d.open=true;});
     window.scrollTo(0,y);
   };
