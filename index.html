@@ -1115,10 +1115,10 @@ class Component extends DCLogic {
       const name = String(this.props['place' + i + 'Name'] ?? '').trim();
       return { cat: placeCats[i - 1], name: name, note: String(this.props['place' + i + 'Note'] ?? '').trim(),
                link: 'https://yandex.ru/maps/?text=' + encodeURIComponent('Зеленоградск ' + name),
-               hasImg: i <= 6, img: [null, 'images/ph-promenade.jpg', 'images/ph-kurort.jpg', 'images/ph-cafe.jpg', 'images/ph-fish.jpg', 'images/ph-amberseagifts.jpg', 'images/ph-quietbeach.jpg'][i] || '',
-               imgAlt: [null, 'Набережная Зеленоградска с высоты', 'Курортный проспект Зеленоградска', 'Кофейня с видом на море', 'Копчёная рыба на прилавке', 'Янтарь и дары моря на коряге', 'Тихий пляж с дюнами'][i] || '',
-               imgCap: [null, 'Набережная с высоты', 'Курортный проспект', 'Кофе с видом на море', 'Копчёная рыба: вкус Балтики', 'Дары моря', 'Тихий пляж с дюнами'][i] || '',
-               imgPos: [null, '50% 50%', '50% 50%', '50% 38%', '50% 55%', '50% 50%', '50% 60%'][i] || '50% 50%' };
+               hasImg: i <= 6, img: [null, 'images/ph-sunset.jpg', 'images/ph-kurort.jpg', 'images/ph-cafe.jpg', 'images/ph-fish.jpg', 'images/ph-amberseagifts.jpg', 'images/ph-quietbeach.jpg'][i] || '',
+               imgAlt: [null, 'Красный закат над Балтикой: солнце садится в море, на горизонте силуэт корабля', 'Курортный проспект Зеленоградска', 'Кофейня с видом на море', 'Копчёная рыба на прилавке', 'Янтарь и дары моря на коряге', 'Тихий пляж с дюнами'][i] || '',
+               imgCap: [null, 'Закат над морем', 'Курортный проспект', 'Кофе с видом на море', 'Копчёная рыба: вкус Балтики', 'Дары моря', 'Тихий пляж с дюнами'][i] || '',
+               imgPos: [null, '50% 30%', '50% 50%', '50% 38%', '50% 55%', '50% 50%', '50% 60%'][i] || '50% 50%' };
     }).filter((p) => p.name);
     const setPlan = (dow, nights) => () => {
       const t0 = toUtc(today);
