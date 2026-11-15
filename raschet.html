@@ -26,13 +26,17 @@ function ru(s){return s.split('-').reverse().join('.')}
 function money(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'}
 var runs=null,last=0;
 fetch('prices.json?v='+Date.now()).then(function(r){return r.json()}).then(function(j){runs=j.runs.map(function(x){var p=x[0].split('-').map(Number);return [Date.UTC(p[0],p[1]-1,p[2]),x[1]]});var l=j.last.split('-').map(Number);last=Date.UTC(l[0],l[1]-1,l[2])}).catch(function(){});
+function split(ci,n){if(!runs)return null;var g=[];for(var t=ci,k=0;k<n;k++,t+=86400000){if(t>last)return null;var r=0;for(var i=0;i<runs.length;i++){if(runs[i][0]<=t)r=runs[i][1];else break}if(!r)return null;if(g.length&&g[g.length-1][0]===r)g[g.length-1][1]++;else g.push([r,1])}return g}
 function cur(ci,n){if(!runs)return null;var s=0;for(var t=ci,k=0;k<n;k++,t+=86400000){if(t>last)return null;var r=0;for(var i=0;i<runs.length;i++){if(runs[i][0]<=t)r=runs[i][1];else break}if(!r)return null;s+=r}return s}
 function go(){
   var o=document.getElementById('o');var d=decode(document.getElementById('c').value);
   if(!d){o.innerHTML='<div class="card err">Код не распознан. Проверьте, что он скопирован целиком.</div>';return}
   var ci=Date.UTC(2026,0,1)+d.day*86400000, co=ci+d.nights*86400000;
   var now=cur(ci,d.nights);
-  o.innerHTML='<div class="card"><div class="row"><span>Заезд</span><b>'+ru(iso(ci))+'</b></div><div class="row"><span>Выезд</span><b>'+ru(iso(co))+'</b></div><div class="row"><span>Ночей</span><b>'+d.nights+'</b></div><div class="row"><span>Гостей</span><b>'+d.guests+'</b></div><div class="row"><span>Сумма в запросе</span><span class="big">'+money(d.sum)+'</span></div>'+
+  var g=split(ci,d.nights);var night;
+  if(g&&now===d.sum){night=g.length===1?money(g[0][0]):g.map(function(x){return x[1]+' × '+money(x[0])}).join(' + ');}
+  else{var avg=Math.round(d.sum/d.nights);night=(d.sum%d.nights===0?'':'≈ ')+money(avg)+' <span class="small">(средняя: сумма ÷ ночи)</span>';}
+  o.innerHTML='<div class="card"><div class="row"><span>Заезд</span><b>'+ru(iso(ci))+'</b></div><div class="row"><span>Выезд</span><b>'+ru(iso(co))+'</b></div><div class="row"><span>Ночей</span><b>'+d.nights+'</b></div><div class="row"><span>Гостей</span><b>'+d.guests+'</b></div><div class="row"><span>Цена за ночь</span><b style="text-align:right">'+night+'</b></div><div class="row"><span>Сумма в запросе</span><span class="big">'+money(d.sum)+'</span></div>'+
   (now!==null?'<div class="small" style="margin-top:8px">'+(now===d.sum?'Совпадает с текущей таблицей цен.':'По текущей таблице цен (prices.json) сейчас получилось бы '+money(now)+'.')+'</div>':'')+
   (d.guests>2?'<div class="small" style="margin-top:6px">Доплата за третьего гостя в сумму не входит.</div>':'')+'</div>';
 }
