@@ -80,13 +80,15 @@ details.q>div{padding:0 0 22px;color:#DCE8F8;max-width:760px}
 .maplink{color:#B4D7FF;text-decoration:none;font-weight:600;white-space:nowrap}
 @media (max-width:420px){.maplink{white-space:normal}}
 .maplink:hover{color:#B9DAFF;text-decoration:underline}
-.totop{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:22px;font-weight:700;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.totop{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}@keyframes totopIn{to{opacity:1;visibility:visible}}}@media print{.totop{display:none}}.bookfab{position:fixed;left:16px;bottom:16px;z-index:60;height:46px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.bookfab{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}}@media (min-width:701px){.bookfab{left:auto;right:76px}}@media print{.bookfab{display:none}}@media (min-width:701px){header nav{display:grid!important;grid-template-columns:repeat(8,auto);justify-content:space-between;width:100%;gap:0 12px!important}}@media (max-width:700px){header nav{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:24px;box-sizing:border-box}}.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.day{min-width:0}@media (max-width:700px){header nav{flex-wrap:nowrap!important;overflow-x:auto;width:100%;gap:0 20px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}header nav::-webkit-scrollbar{display:none}header nav a{white-space:nowrap;flex:none}}
+.totop{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:22px;font-weight:700;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.totop{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}@keyframes totopIn{to{opacity:1;visibility:visible}}}@media print{.totop{display:none}}.bookfab.hide{opacity:0!important;visibility:hidden!important;pointer-events:none!important}.bookfab{position:fixed;left:16px;bottom:16px;z-index:60;height:46px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.bookfab{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}}@media (min-width:701px){.bookfab{left:auto;right:76px}}@media print{.bookfab{display:none}}@media (min-width:701px){header nav{display:grid!important;grid-template-columns:repeat(8,auto);justify-content:space-between;width:100%;gap:0 12px!important}}@media (max-width:700px){header nav{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:24px;box-sizing:border-box}}.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.day{min-width:0}@media (max-width:700px){header nav{flex-wrap:nowrap!important;overflow-x:auto;width:100%;gap:0 20px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}header nav::-webkit-scrollbar{display:none}header nav a{white-space:nowrap;flex:none}}
 .cal .wd{text-align:center;font-size:12px;font-weight:600;letter-spacing:0.08em;color:#D6E4F7;padding:4px 0}
 .day{aspect-ratio:1/1;min-height:40px;border-radius:12px;border:1px solid #2B64C7;background:rgba(0,27,73,0.68);color:#FFFFFF;font:inherit;font-weight:600;font-size:15px;cursor:pointer;padding:0}
 .day.blank{border:0;background:transparent;cursor:default}
 .day.past{opacity:0.35;cursor:default}
 .day.busy{background:repeating-linear-gradient(135deg,#0A2A66 0 6px,#0D3580 6px 12px);color:#8FA6CF;text-decoration:line-through;cursor:default;border-color:#1E4A9A}
 .day.rng{background:#2B64C7}
+.day.soon{opacity:0.42}
+.bkdis{opacity:0.55}
 .day.sel{background:#FFFFFF;color:#043385;border-color:#FFFFFF}
 .day.today{box-shadow:0 0 0 2px #7DBAFF inset}
 .place{flex:1 1 300px;min-width:0;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:22px;box-sizing:border-box;display:flex;flex-direction:column;gap:8px}
@@ -193,7 +195,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
     <p style="font-size:clamp(16px,2.4vw,19px);color:#DCE8F8;margin:0 0 40px;max-width:680px">Несколько минут пешком до моря, площади Роза ветров и главной набережной. А дальше всё просто: гулять, дышать морем и возвращаться сюда ещё не раз.</p>
     <div style="display:flex;flex-wrap:wrap;align-items:center;gap:12px 14px;margin-bottom:56px">
       <a href="{{tgLink}}" style="background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:16px;padding:16px 28px;border-radius:999px">Написать в Telegram</a>
-      <a href="{{bookingLink}}" target="_blank" rel="noopener" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid #5381D2">Запросить даты</a>
+      <a href="{{bookingLink}}" target="{{bookingTarget}}" rel="noopener" class="{{bookingCls}}" style="color:#FFFFFF;text-decoration:none;font-weight:600;font-size:16px;padding:14px 26px;border-radius:999px;border:1px solid #5381D2">Запросить даты</a>
     </div>
     <div id="weather" style="position:relative;overflow:hidden;margin:0 0 40px;background:rgba(0,27,73,0.68);border:1px solid #2B64C7;border-radius:18px;padding:18px 22px;box-sizing:border-box">
       <div class="wxbg {{wxScene}}" aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;background-size:cover;background-position:72% 50%;pointer-events:none"></div>
@@ -481,10 +483,10 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
 <g fill="#04205F"><rect x="58" y="226" width="5" height="72"/><rect x="178" y="226" width="5" height="72"/><rect x="298" y="226" width="5" height="72"/></g>
 <g fill="#FFE2A8"><circle cx="60.5" cy="222" r="9"/><circle cx="180.5" cy="222" r="9"/><circle cx="300.5" cy="222" r="9"/></g>
 <g opacity="0.25" fill="#FFE2A8"><circle cx="60.5" cy="222" r="22"/><circle cx="180.5" cy="222" r="22"/><circle cx="300.5" cy="222" r="22"/></g>
-<g><path d="M338 286h30l-4 22h-22z" fill="#FFFFFF"/><path d="M368 291q10 0 10 8t-10 8" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M345 276q-5-6 0-12t0-10M358 276q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Пятница — воскресенье</div>
-        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Уикенд</div>
-        <ul style="margin:0;padding-left:20px;font-size:15px;color:#DCE8F8;flex:1"><li style="margin:0 0 6px">Вылетели в пятницу вечером.</li><li style="margin:0 0 6px">В субботу утром кофе у моря.</li><li style="margin:0 0 6px">В воскресенье закат на променаде и ощущение, что отпуск был дольше.</li></ul>
-        <div style="font-size:15px;color:#E4EEFA;font-style:italic">В понедельник коллеги спросят, где вы взяли такое настроение.</div>
+<g><path d="M338 286h30l-4 22h-22z" fill="#FFFFFF"/><path d="M368 291q10 0 10 8t-10 8" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M345 276q-5-6 0-12t0-10M358 276q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Суббота — суббота, через неделю</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Две недели</div>
+        <ul style="margin:0;padding-left:20px;font-size:15px;color:#DCE8F8;flex:1"><li style="margin:0 0 6px">Четырнадцать ночей: хватит и на пляж, и на всё, что давно откладывали.</li><li style="margin:0 0 6px">Можно съездить на Куршскую косу и в Калининград, а вечером вернуться к морю.</li><li style="margin:0 0 6px">Закаты на променаде без привычки смотреть на часы.</li></ul>
+        <div style="font-size:15px;color:#E4EEFA;font-style:italic">К концу второй недели чайки будут узнавать вас в лицо.</div>
         <div><a href="#booking" onClick="{{planWeekend}}" style="display:inline-block;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:15px;padding:13px 22px;border-radius:999px;border:0;cursor:pointer;font-family:inherit">Выбрать такие даты</a></div>
       </div>
       <div style="flex:1 1 300px;min-width:0;position:relative;overflow:hidden;isolation:isolate;background:rgba(0,27,73,0.68);text-shadow:0 0 3px rgba(0,10,40,0.9),0 1px 10px rgba(0,10,40,0.9);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px">
@@ -517,7 +519,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
 <rect x="92" y="204" width="84" height="44" rx="3" fill="#2E7BFF"/><path d="M100 214h40M100 224h60M100 234h30" stroke="#EAF2FF" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
 <rect x="58" y="256" width="164" height="8" rx="4" fill="#9CC4FF"/>
 <g><path d="M290 232h34l-5 26h-24z" fill="#FFFFFF"/><path d="M324 238q11 0 11 9t-11 9" fill="none" stroke="#FFFFFF" stroke-width="3"/><path d="M299 222q-5-6 0-12t0-10M312 222q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.85"/></g>
-<g fill="#0A1F55"><path d="M340 316c-6-20 8-34 28-34c20 0 32 12 30 30c-1 8-4 12-8 12h-40c-6 0-10-3-10-8z"/><circle cx="394" cy="288" r="0"/></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Воскресенье — пятница</div>
+<g fill="#0A1F55"><path d="M340 316c-6-20 8-34 28-34c20 0 32 12 30 30c-1 8-4 12-8 12h-40c-6 0-10-3-10-8z"/><circle cx="394" cy="288" r="0"/></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Воскресенье — воскресенье</div>
         <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Работа с видом на море</div>
         <ul style="margin:0;padding-left:20px;font-size:15px;color:#DCE8F8;flex:1"><li style="margin:0 0 6px">Быстрый Wi-Fi и кофемашина на месте.</li><li style="margin:0 0 6px">Созвон в десять, прогулка вдоль моря в шесть.</li><li style="margin:0 0 6px">Вечером зонт и стульчики на пляже: рабочий день закончен.</li></ul>
         <div style="font-size:15px;color:#E4EEFA;font-style:italic">Камеру лучше не направлять на окно: коллеги начнут завидовать.</div>
@@ -531,7 +533,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <div style="flex:1 1 320px;min-width:0">
         <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#B4D7FF;margin-bottom:16px">Свободные даты</div>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Когда можно приехать</h2>
-        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Нажмите на день заезда, затем на день выезда: даты сами подставятся в форму брони ниже.</p>
+        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Нажмите на день заезда, затем на день выезда: даты сами подставятся в форму брони ниже. Минимальный срок брони — 7 ночей.</p>
         <sc-if value="{{hasBusy}}" hint-placeholder-val="{{false}}">
           <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Полосатые дни заняты. В день выезда другого гостя заехать можно: квартира уже свободна с 15:00.</p>
         </sc-if>
@@ -563,7 +565,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <div style="flex:1 1 320px;min-width:0">
         <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#B4D7FF;margin-bottom:16px">Быстрый запрос</div>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Запрос на бронь</h2>
-        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты и число гостей: откроется Telegram с готовым сообщением для Нины. Останется нажать «Отправить».</p>
+        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты (минимум 7 ночей) и число гостей: откроется Telegram с готовым сообщением для Нины, уже с расчётной суммой. Останется нажать «Отправить».</p>
         <p style="margin:0 0 12px;font-size:14px;color:#D6E4F7;max-width:480px">Кот-консультант на подтверждение брони не уполномочен: его «мяу» означает «да», но последнее слово всё равно за Ниной.</p>
         <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Это запрос, а не оплата: мы пока только знакомимся. Бронь подтверждается после ответа Нины.</p>
       </div>
@@ -586,10 +588,20 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
           <button onClick="{{guestsInc}}" aria-label="Больше гостей" style="width:48px;height:48px;border-radius:999px;border:1px solid #5381D2;background:#011D4D;color:#FFFFFF;font-size:22px;cursor:pointer">+</button>
         </div>
         <div style="border-top:1px solid #2B64C7;padding-top:16px;margin-bottom:20px;font-size:15px;color:#DCE8F8">{{summary}}</div>
+        <sc-if value="{{hasTotal}}" hint-placeholder-val="{{false}}">
+          <div style="margin:-4px 0 18px;padding:14px 16px;border-radius:14px;background:rgba(125,186,255,0.16);border:1px solid rgba(125,186,255,0.4)">
+            <div style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#B4D7FF;margin-bottom:6px">Расчётная сумма</div>
+            <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:600;line-height:1.1">{{totalText}}</div>
+            <div style="margin-top:6px;font-size:13px;color:#D6E4F7">{{totalDetail}}</div>
+          </div>
+        </sc-if>
+        <sc-if value="{{minError}}" hint-placeholder-val="{{false}}">
+          <div style="margin-bottom:16px;font-size:14px;color:#FFC2B0">{{minNote}}</div>
+        </sc-if>
         <sc-if value="{{dateError}}" hint-placeholder-val="{{false}}">
           <div style="margin-bottom:16px;font-size:14px;color:#FFC2B0">Дата выезда должна быть позже даты заезда: машину времени пока не завезли.</div>
         </sc-if>
-        <a href="{{bookingLink}}" target="_blank" rel="noopener" style="display:block;text-align:center;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:17px;padding:17px 24px;border-radius:999px">Отправить запрос в Telegram</a>
+        <a href="{{bookingLink}}" target="{{bookingTarget}}" rel="noopener" class="{{bookingCls}}" style="display:block;text-align:center;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:17px;padding:17px 24px;border-radius:999px">{{bookingLabel}}</a>
       </div>
     </div>
   </section>
@@ -969,7 +981,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Частые вопросы</h2>
       <details class="acc"><summary>Показать вопросы и ответы</summary><div class="accbody">
       <div style="margin-top:24px;border-top:1px solid #2B64C7">
-        <details class="q"><summary>Сколько стоит проживание?</summary><div>Стоимость зависит от дат и числа гостей. Отправьте запрос на бронь или <a href="{{tgLink}}" target="_blank" rel="noopener">напишите Нине в Telegram</a>, и она назовёт цену.</div></details>
+        <details class="q"><summary>Сколько стоит проживание?</summary><div>Минимальный срок брони — 7 ночей. Цена зависит от дат: выберите их в форме брони, и страница сразу покажет расчётную сумму для двоих. Эта же сумма уйдёт Нине вместе с запросом. Окончательно цену и наличие дат подтверждает Нина.</div></details>
         <details class="q"><summary>Во сколько заезд и выезд?</summary><div>Заезд с 15:00, выезд до 12:00. Заселение дистанционное и возможно в любое время суток, 24/7.</div></details>
         <details class="q"><summary>Как пользоваться замком?</summary><div>Заселение дистанционное, встречать вас лично не нужно. Как пользоваться замком, показано в коротких видео:<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px"><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-1-poster.jpg" src="videos/lock-1.mp4" aria-label="Видеоинструкция 1" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 1</figcaption></figure><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-2-poster.jpg" src="videos/lock-2.mp4" aria-label="Видеоинструкция 2" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 2</figcaption></figure><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-3-poster.jpg" src="videos/lock-3.mp4" aria-label="Видеоинструкция 3" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 3</figcaption></figure></div><div style="font-size:14px;color:#D6E4F7;margin-top:12px">Нажмите на видео, чтобы воспроизвести. Если что-то не получается, напишите Нине в Telegram.</div></div></details>
         <details class="q"><summary>Как долго лететь из Москвы и Санкт-Петербурга?</summary><div>В воздухе около двух часов, точное время зависит от рейса и авиакомпании. Часы в Зеленоградске отстают от московских и петербургских на час, так что отдых начинается как будто раньше. Билеты удобно искать по ссылкам в блоке «Дорога».</div></details>
@@ -1098,6 +1110,28 @@ class Component extends DCLogic {
       setTimeout(kick, 1500);
       setTimeout(kick, 3500);
     }
+    if (typeof window !== 'undefined' && 'IntersectionObserver' in window) {
+      setTimeout(() => {
+        try {
+          const bk = document.getElementById('booking');
+          const fab = document.querySelector('.bookfab');
+          if (!bk || !fab) return;
+          if (window.__bookIo) window.__bookIo.disconnect();
+          window.__bookIo = new IntersectionObserver((es) => {
+            es.forEach((e) => { fab.classList.toggle('hide', e.isIntersecting); });
+          }, { threshold: 0.15 });
+          window.__bookIo.observe(bk);
+        } catch (err) {}
+      }, 800);
+    }
+    if (typeof fetch !== 'undefined') {
+      setTimeout(() => {
+        fetch('prices.json?v=' + Date.now())
+          .then((r) => { if (!r.ok) throw new Error('http'); return r.json(); })
+          .then((j) => { if (j && j.runs && j.runs.length && j.last) this.setState({ pj: j }); })
+          .catch(() => {});
+      }, 0);
+    }
     if (typeof fetch !== 'undefined') {
       setTimeout(() => {
     const sunsetOf = (lat, lon, now) => {
@@ -1179,6 +1213,35 @@ class Component extends DCLogic {
     let nights = 0;
     if (checkin && checkout) nights = Math.round((toUtc(checkout) - toUtc(checkin)) / 86400000);
     const dateError = !!(checkin && checkout && nights <= 0);
+    const MIN_NIGHTS = 7;
+    const PJ = st.pj || null;
+    const PRICE_LAST = toUtc(PJ ? PJ.last : '2027-12-31');
+    const PRICE_RUNS = PJ ? PJ.runs.map((x) => [toUtc(x[0]), Number(x[1])]) : '2026-01-01:11200,2026-01-09:5500,2026-02-06:5000,2026-02-08:5500,2026-02-13:5000,2026-02-15:5500,2026-02-20:5000,2026-02-22:5500,2026-02-27:5000,2026-03-01:5500,2026-04-01:5800,2026-05-01:8400,2026-05-04:6300,2026-05-08:6800,2026-05-09:8400,2026-05-12:6300,2026-05-15:6800,2026-05-17:6300,2026-05-22:6800,2026-05-24:6300,2026-05-29:6800,2026-05-31:6300,2026-06-01:8500,2026-06-05:8700,2026-06-07:8500,2026-06-12:8700,2026-06-14:8500,2026-06-19:8700,2026-06-21:8500,2026-06-26:8700,2026-06-28:8500,2026-07-01:10600,2026-07-26:0,2026-08-04:10600,2026-08-06:0,2026-08-12:10600,2026-08-13:0,2026-08-17:10600,2026-08-22:0,2026-08-30:10600,2026-09-01:6000,2026-09-04:7000,2026-09-06:6000,2026-09-11:7000,2026-09-13:6000,2026-09-18:7000,2026-09-20:6000,2026-09-25:7000,2026-09-27:6000,2026-10-01:5800,2026-10-06:0,2026-10-19:5800,2026-10-31:0,2026-11-04:4300,2026-11-09:3900,2026-11-16:4300,2026-12-01:5200,2026-12-28:11500,2027-01-01:11200,2027-01-09:5500,2027-02-05:5000,2027-02-07:5500,2027-02-12:5000,2027-02-14:5500,2027-02-19:5000,2027-02-21:5500,2027-02-26:5000,2027-02-28:5500,2027-04-01:5800,2027-05-01:8400,2027-05-04:6300,2027-05-07:6800,2027-05-08:8400,2027-05-11:6300,2027-05-14:6800,2027-05-16:6300,2027-05-21:6800,2027-05-23:6300,2027-05-28:6800,2027-05-30:6300,2027-06-01:8500,2027-06-04:8700,2027-06-06:8500,2027-06-11:8700,2027-06-13:8500,2027-06-18:8700,2027-06-20:8500,2027-06-25:8700,2027-06-27:8500,2027-07-01:10600,2027-09-01:6000,2027-09-03:7000,2027-09-05:6000,2027-09-10:7000,2027-09-12:6000,2027-09-17:7000,2027-09-19:6000,2027-09-24:7000,2027-09-26:6000,2027-10-01:5800,2027-11-01:4300,2027-12-01:5200,2027-12-28:11500'.split(',').map((x) => { const q = x.split(':'); return [toUtc(q[0]), Number(q[1])]; });
+    const priceOn = (t) => { if (t > PRICE_LAST) return 0; let r = 0; for (let i = 0; i < PRICE_RUNS.length; i++) { if (PRICE_RUNS[i][0] <= t) r = PRICE_RUNS[i][1]; else break; } return r; };
+    const money = (n) => String(n).replace(/\B(?=(\d{3})+(?!\d))/g, '\u00a0') + '\u00a0\u20bd';
+    const minOut = checkin ? new Date(toUtc(checkin) + MIN_NIGHTS * 86400000).toISOString().slice(0, 10) : '';
+    const minError = !!(checkin && checkout && !dateError && nights < MIN_NIGHTS);
+    let totalText = '', totalDetail = '', totalMsg = '', hasTotal = false;
+    if (checkin && checkout && !dateError && !minError) {
+      const groups = [];
+      let sum = 0, known = true;
+      for (let t = toUtc(checkin); t < toUtc(checkout); t += 86400000) {
+        const p = priceOn(t);
+        if (!p) { known = false; break; }
+        sum += p;
+        if (groups.length && groups[groups.length - 1][0] === p) groups[groups.length - 1][1]++; else groups.push([p, 1]);
+      }
+      if (known) {
+        hasTotal = true;
+        totalText = money(sum);
+        const expr = groups.map((g) => g[1] + ' \u00d7 ' + money(g[0])).join(' + ');
+        const dd = new Date();
+        const todayRu = pad(dd.getDate()) + '.' + pad(dd.getMonth() + 1) + '.' + dd.getFullYear();
+        totalDetail = expr + ' = ' + money(sum) + '. Рекомендуемые цены на ' + todayRu + ', за ночь для двоих' + (guests > 2 ? '; доплата за третьего гостя не включена' : '') + '.';
+        totalMsg = ' Расчётная сумма за проживание: ' + expr + ' = ' + money(sum) + ' (рекомендуемые цены на ' + todayRu + ', за ночь для двоих' + (guests > 2 ? ', доплата за третьего гостя не включена' : '') + ').';
+      }
+    }
+    const minNote = minError ? 'Минимальный срок брони — ' + MIN_NIGHTS + ' ночей. Выезд не раньше ' + fmt(minOut) + '.' : '';
     const guestsText = guests + ' ' + word(guests, 'гость', 'гостя', 'гостей');
     let msg = 'Здравствуйте, Нина! Хочу забронировать квартиру в Зеленоградске.';
     const parts = [];
@@ -1187,10 +1250,11 @@ class Component extends DCLogic {
     if (nights > 0) parts.push(nights + ' ' + word(nights, 'ночь', 'ночи', 'ночей'));
     parts.push(guestsText);
     if (checkin) msg += ' Даты: ' + parts.join(', ') + '.'; else msg += ' Гостей: ' + guests + '.';
+    msg += totalMsg;
     msg += ' Подскажите, пожалуйста, свободны ли даты?';
     const summary = checkin || checkout
       ? parts.map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join(' · ')
-      : 'Выберите даты, затем отправьте запрос. Гостей: ' + guests + '.';
+      : 'Выберите даты (не менее ' + MIN_NIGHTS + ' ночей), затем отправьте запрос. Гостей: ' + guests + '.';
     const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
     const busy = new Set();
     String(this.props.busyDates ?? '').split(/[,;\n]/).forEach((part) => {
@@ -1208,9 +1272,12 @@ class Component extends DCLogic {
       if (day < today) return;
       const s2 = this.state || {};
       const ci = s2.checkin || '', co = s2.checkout || '';
-      if (ci && !co && day > ci && rangeFree(ci, day)) { this.setState({ checkout: day }); return; }
+      if (ci && !co && day > ci) {
+        if (day < new Date(toUtc(ci) + MIN_NIGHTS * 86400000).toISOString().slice(0, 10)) { this.setState({ short: true }); return; }
+        if (rangeFree(ci, day)) { this.setState({ checkout: day, short: false }); return; }
+      }
       if (busy.has(day)) return;
-      this.setState({ checkin: day, checkout: '' });
+      this.setState({ checkin: day, checkout: '', short: false });
     };
     const cells = [];
     for (let i = 0; i < lead; i++) cells.push({ cls: 'day blank', n: '', label: '', pick: () => {} });
@@ -1222,11 +1289,12 @@ class Component extends DCLogic {
       if (day === today) cls.push('today');
       if (day === checkin || day === checkout) cls.push('sel');
       else if (checkin && checkout && day > checkin && day < checkout) cls.push('rng');
+      if (checkin && !checkout && day > checkin && day < minOut) cls.push('soon');
       cells.push({ cls: cls.join(' '), n: String(n), label: fmt(day) + (busy.has(day) ? ', занято' : ''), pick: pick(day) });
     }
     const rangeText = checkin && checkout && nights > 0
       ? 'Выбрано: ' + fmt(checkin) + ' → ' + fmt(checkout) + ', ' + nights + ' ' + word(nights, 'ночь', 'ночи', 'ночей') + '. Даты уже в форме брони ниже.'
-      : checkin ? 'Заезд ' + fmt(checkin) + '. Теперь выберите день выезда.' : 'Даты пока не выбраны.';
+      : checkin ? (st.short ? 'Минимальный срок брони — ' + MIN_NIGHTS + ' ночей. ' : '') + 'Заезд ' + fmt(checkin) + '. Теперь выберите день выезда: не раньше ' + fmt(minOut) + '.' : 'Даты пока не выбраны. Минимальный срок брони — ' + MIN_NIGHTS + ' ночей.';
     const placeCats = ["Закат", "Прогулка", "Кофе", "Ужин", "Покупки", "Море"];
     const places = [1, 2, 3, 4, 5, 6].map((i) => {
       const name = String(this.props['place' + i + 'Name'] ?? '').trim();
@@ -1389,9 +1457,9 @@ class Component extends DCLogic {
           if (btn) { btn.innerHTML = big ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg>'; btn.title = big ? 'Развернуть' : 'Свернуть'; btn.setAttribute('aria-label', btn.title); }
         } catch (err) {}
       },
-      planWeekend: setPlan(5, 2),
+      planWeekend: setPlan(6, 14),
       planWeek: setPlan(6, 7),
-      planRemote: setPlan(0, 5),
+      planRemote: setPlan(0, 7),
       hasWx: !!wx,
       wxLoading: !wx && st.wxState !== 'fail',
       wxFail: !wx && st.wxState === 'fail',
@@ -1428,12 +1496,16 @@ class Component extends DCLogic {
       today: today,
       checkin: checkin,
       checkout: checkout,
-      minCheckout: checkin || today,
+      minCheckout: checkin ? minOut : today,
       guests: guests,
       summary: summary,
       dateError: dateError,
-      bookingLink: base + '?text=' + encodeURIComponent(msg),
-      setCheckin: (e) => this.setState({ checkin: e.target.value }),
+      bookingLink: (minError || dateError) ? '#booking' : base + '?text=' + encodeURIComponent(msg),
+      bookingTarget: (minError || dateError) ? '_self' : '_blank',
+      bookingCls: (minError || dateError) ? 'bkdis' : '',
+      bookingLabel: minError ? 'Выберите не менее ' + MIN_NIGHTS + ' ночей' : 'Отправить запрос в Telegram',
+      hasTotal: hasTotal, totalText: totalText, totalDetail: totalDetail, minError: minError, minNote: minNote,
+      setCheckin: (e) => this.setState({ checkin: e.target.value, short: false }),
       setCheckout: (e) => this.setState({ checkout: e.target.value }),
       guestsInc: () => this.setState({ guests: Math.min(3, guests + 1) }),
       guestsDec: () => this.setState({ guests: Math.max(1, guests - 1) })
