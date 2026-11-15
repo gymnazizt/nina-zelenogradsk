@@ -1,11 +1,12 @@
 <!doctype html>
 <html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Расшифровка расчёта</title>
-<style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#05204E;color:#fff;min-height:100vh;display:flex;justify-content:center;padding:24px 16px;box-sizing:border-box}main{width:100%;max-width:520px}h1{font-size:26px;margin:8px 0 6px}p{color:#C9D9F2;font-size:15px;line-height:1.45}input{width:100%;box-sizing:border-box;font:inherit;font-size:20px;letter-spacing:.06em;padding:14px;border-radius:12px;border:1px solid #5381D2;background:#011D4D;color:#fff;text-transform:uppercase}button{margin-top:12px;font:inherit;font-weight:700;font-size:17px;padding:14px 24px;border-radius:999px;border:0;background:#fff;color:#043385;cursor:pointer}.card{margin-top:20px;padding:18px;border-radius:16px;background:rgba(125,186,255,.16);border:1px solid rgba(125,186,255,.4)}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}.row:last-child{border:0}.big{font-size:34px;font-weight:700}.err{color:#FFC2B0}.small{font-size:13px;color:#C9D9F2}</style></head>
+<style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#05204E;color:#fff;min-height:100vh;display:flex;justify-content:center;padding:24px 16px;box-sizing:border-box}main{width:100%;max-width:520px}h1{font-size:26px;margin:8px 0 6px}p{color:#C9D9F2;font-size:15px;line-height:1.45}input{width:100%;box-sizing:border-box;font:inherit;font-size:20px;letter-spacing:.06em;padding:14px;border-radius:12px;border:1px solid #5381D2;background:#011D4D;color:#fff;text-transform:uppercase}button{margin-top:12px;font:inherit;font-weight:700;font-size:17px;padding:14px 24px;border-radius:999px;border:0;background:#fff;color:#043385;cursor:pointer}.card{margin-top:20px;padding:18px;border-radius:16px;background:rgba(125,186,255,.16);border:1px solid rgba(125,186,255,.4)}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}.row:last-child{border:0}.big{font-size:34px;font-weight:700}.err{color:#FFC2B0}.small{font-size:13px;color:#C9D9F2}#r:hover{background:rgba(255,255,255,.12)}</style></head>
 <body><main>
 <h1>Расшифровка расчёта</h1>
 <p>Вставьте «Код расчёта» из сообщения гостя в Telegram. Страница покажет даты, число ночей и сумму, которую страница бронирования посчитала на момент запроса.</p>
 <input id="c" placeholder="XXXX-XXXX-XXXX-X" autocomplete="off" autocapitalize="characters">
 <button id="b">Расшифровать</button>
+<button id="r" type="button" style="background:transparent;color:#fff;border:1px solid #5381D2;margin-left:8px">Сброс</button>
 <div id="o"></div>
 </main>
 <script>
@@ -43,4 +44,5 @@ function go(){
 document.getElementById('b').onclick=go;
 document.getElementById('c').addEventListener('keydown',function(e){if(e.key==='Enter')go()});
 })();
+document.getElementById('r').onclick=function(){var c=document.getElementById('c');c.value='';document.getElementById('o').innerHTML='';c.focus()};
 </script></body></html>
