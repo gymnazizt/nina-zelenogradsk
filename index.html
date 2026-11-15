@@ -565,7 +565,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <div style="flex:1 1 320px;min-width:0">
         <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#B4D7FF;margin-bottom:16px">Быстрый запрос</div>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Запрос на бронь</h2>
-        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты (минимум 7 ночей) и число гостей: откроется Telegram с готовым сообщением для Нины, уже с расчётной суммой. Останется нажать «Отправить».</p>
+        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты (минимум 7 ночей) и число гостей: откроется Telegram с готовым сообщением для Нины, Останется нажать «Отправить». Стоимость Нина назовёт в ответе.</p>
         <p style="margin:0 0 12px;font-size:14px;color:#D6E4F7;max-width:480px">Кот-консультант на подтверждение брони не уполномочен: его «мяу» означает «да», но последнее слово всё равно за Ниной.</p>
         <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Это запрос, а не оплата: мы пока только знакомимся. Бронь подтверждается после ответа Нины.</p>
       </div>
@@ -588,13 +588,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
           <button onClick="{{guestsInc}}" aria-label="Больше гостей" style="width:48px;height:48px;border-radius:999px;border:1px solid #5381D2;background:#011D4D;color:#FFFFFF;font-size:22px;cursor:pointer">+</button>
         </div>
         <div style="border-top:1px solid #2B64C7;padding-top:16px;margin-bottom:20px;font-size:15px;color:#DCE8F8">{{summary}}</div>
-        <sc-if value="{{hasTotal}}" hint-placeholder-val="{{false}}">
-          <div style="margin:-4px 0 18px;padding:14px 16px;border-radius:14px;background:rgba(125,186,255,0.16);border:1px solid rgba(125,186,255,0.4)">
-            <div style="font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#B4D7FF;margin-bottom:6px">Расчётная сумма</div>
-            <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:34px;font-weight:600;line-height:1.1">{{totalText}}</div>
-            <div style="margin-top:6px;font-size:13px;color:#D6E4F7">{{totalDetail}}</div>
-          </div>
-        </sc-if>
+        <div style="margin:-4px 0 18px;font-size:13px;color:#D6E4F7">Стоимость проживания Нина назовёт в ответе на ваш запрос.</div>
         <sc-if value="{{minError}}" hint-placeholder-val="{{false}}">
           <div style="margin-bottom:16px;font-size:14px;color:#FFC2B0">{{minNote}}</div>
         </sc-if>
@@ -981,7 +975,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Частые вопросы</h2>
       <details class="acc"><summary>Показать вопросы и ответы</summary><div class="accbody">
       <div style="margin-top:24px;border-top:1px solid #2B64C7">
-        <details class="q"><summary>Сколько стоит проживание?</summary><div>Минимальный срок брони — 7 ночей. Цена зависит от дат: выберите их в форме брони, и страница сразу покажет расчётную сумму для двоих. Эта же сумма уйдёт Нине вместе с запросом. Окончательно цену и наличие дат подтверждает Нина.</div></details>
+        <details class="q"><summary>Сколько стоит проживание?</summary><div>Минимальный срок брони — 7 ночей. Цена зависит от дат и числа гостей. Выберите даты в форме брони и отправьте запрос: Нина назовёт стоимость и подтвердит наличие дат в ответе.</div></details>
         <details class="q"><summary>Во сколько заезд и выезд?</summary><div>Заезд с 15:00, выезд до 12:00. Заселение дистанционное и возможно в любое время суток, 24/7.</div></details>
         <details class="q"><summary>Как пользоваться замком?</summary><div>Заселение дистанционное, встречать вас лично не нужно. Как пользоваться замком, показано в коротких видео:<div style="display:flex;flex-wrap:wrap;gap:14px;margin-top:14px"><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-1-poster.jpg" src="videos/lock-1.mp4" aria-label="Видеоинструкция 1" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 1</figcaption></figure><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-2-poster.jpg" src="videos/lock-2.mp4" aria-label="Видеоинструкция 2" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 2</figcaption></figure><figure style="margin:0;flex:1 1 150px;max-width:220px;min-width:0"><video controls playsinline preload="metadata" poster="images/lock-3-poster.jpg" src="videos/lock-3.mp4" aria-label="Видеоинструкция 3" style="display:block;width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:14px;background:#0C3375"></video><figcaption style="font-size:14px;color:#D6E4F7;margin-top:6px;text-align:center">Видеоинструкция 3</figcaption></figure></div><div style="font-size:14px;color:#D6E4F7;margin-top:12px">Нажмите на видео, чтобы воспроизвести. Если что-то не получается, напишите Нине в Telegram.</div></div></details>
         <details class="q"><summary>Как долго лететь из Москвы и Санкт-Петербурга?</summary><div>В воздухе около двух часов, точное время зависит от рейса и авиакомпании. Часы в Зеленоградске отстают от московских и петербургских на час, так что отдых начинается как будто раньше. Билеты удобно искать по ссылкам в блоке «Дорога».</div></details>
@@ -1232,13 +1226,17 @@ class Component extends DCLogic {
         if (groups.length && groups[groups.length - 1][0] === p) groups[groups.length - 1][1]++; else groups.push([p, 1]);
       }
       if (known) {
-        hasTotal = true;
-        totalText = money(sum);
-        const expr = groups.map((g) => g[1] + ' \u00d7 ' + money(g[0])).join(' + ');
-        const dd = new Date();
-        const todayRu = pad(dd.getDate()) + '.' + pad(dd.getMonth() + 1) + '.' + dd.getFullYear();
-        totalDetail = expr + ' = ' + money(sum) + '. Рекомендуемые цены на ' + todayRu + ', за ночь для двоих' + (guests > 2 ? '; доплата за третьего гостя не включена' : '') + '.';
-        totalMsg = ' Расчётная сумма за проживание: ' + expr + ' = ' + money(sum) + ' (рекомендуемые цены на ' + todayRu + ', за ночь для двоих' + (guests > 2 ? ', доплата за третьего гостя не включена' : '') + ').';
+        const di = Math.round((toUtc(checkin) - Date.UTC(2026, 0, 1)) / 86400000);
+        const by = [(di >> 8) & 255, di & 255, nights & 255, guests & 255, (sum >> 16) & 255, (sum >> 8) & 255, sum & 255];
+        let ck = 0; by.forEach((v, i) => { ck = (ck * 31 + v + i) & 255; }); by.push(ck);
+        const ks = (i) => ((i * 73 + 41) * 167 + 29 * i * i + 11) & 255;
+        const al = '0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+        let bits = '';
+        by.forEach((v, i) => { bits += ((v ^ ks(i)) + 256).toString(2).slice(1); });
+        let cd = '';
+        for (let i = 0; i < bits.length; i += 5) cd += al[parseInt((bits.slice(i, i + 5) + '0000').slice(0, 5), 2)];
+        cd = cd.replace(/(.{4})/g, '$1-').replace(/-$/, '');
+        totalMsg = ' Код расчёта: ' + cd + '.';
       }
     }
     const minNote = minError ? 'Минимальный срок брони — ' + MIN_NIGHTS + ' ночей. Выезд не раньше ' + fmt(minOut) + '.' : '';
@@ -1251,7 +1249,7 @@ class Component extends DCLogic {
     parts.push(guestsText);
     if (checkin) msg += ' Даты: ' + parts.join(', ') + '.'; else msg += ' Гостей: ' + guests + '.';
     msg += totalMsg;
-    msg += ' Подскажите, пожалуйста, свободны ли даты?';
+    msg += ' Подскажите, пожалуйста, свободны ли даты и какая будет стоимость?';
     const summary = checkin || checkout
       ? parts.map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join(' · ')
       : 'Выберите даты (не менее ' + MIN_NIGHTS + ' ночей), затем отправьте запрос. Гостей: ' + guests + '.';

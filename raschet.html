@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Расшифровка расчёта</title>
+<style>body{margin:0;font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;background:#05204E;color:#fff;min-height:100vh;display:flex;justify-content:center;padding:24px 16px;box-sizing:border-box}main{width:100%;max-width:520px}h1{font-size:26px;margin:8px 0 6px}p{color:#C9D9F2;font-size:15px;line-height:1.45}input{width:100%;box-sizing:border-box;font:inherit;font-size:20px;letter-spacing:.06em;padding:14px;border-radius:12px;border:1px solid #5381D2;background:#011D4D;color:#fff;text-transform:uppercase}button{margin-top:12px;font:inherit;font-weight:700;font-size:17px;padding:14px 24px;border-radius:999px;border:0;background:#fff;color:#043385;cursor:pointer}.card{margin-top:20px;padding:18px;border-radius:16px;background:rgba(125,186,255,.16);border:1px solid rgba(125,186,255,.4)}.row{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,.12)}.row:last-child{border:0}.big{font-size:34px;font-weight:700}.err{color:#FFC2B0}.small{font-size:13px;color:#C9D9F2}</style></head>
+<body><main>
+<h1>Расшифровка расчёта</h1>
+<p>Вставьте «Код расчёта» из сообщения гостя в Telegram. Страница покажет даты, число ночей и сумму, которую страница бронирования посчитала на момент запроса.</p>
+<input id="c" placeholder="XXXX-XXXX-XXXX-X" autocomplete="off" autocapitalize="characters">
+<button id="b">Расшифровать</button>
+<div id="o"></div>
+</main>
+<script>
+(function(){
+var al='0123456789ABCDEFGHJKMNPQRSTVWXYZ';
+function ks(i){return ((i*73+41)*167+29*i*i+11)&255}
+function decode(code){
+  var t=code.toUpperCase().replace(/[^0-9A-Z]/g,'').replace(/O/g,'0').replace(/[IL]/g,'1');
+  var bits='';for(var i=0;i<t.length;i++){var k=al.indexOf(t[i]);if(k<0)return null;bits+=(k+32).toString(2).slice(1)}
+  if(bits.length<64)return null;
+  var by=[];for(var j=0;j<8;j++)by.push((parseInt(bits.slice(j*8,j*8+8),2)^ks(j))&255);
+  var ck=0;for(var q=0;q<7;q++)ck=(ck*31+by[q]+q)&255;
+  if(ck!==by[7])return null;
+  return {day:(by[0]<<8)|by[1],nights:by[2],guests:by[3],sum:(by[4]<<16)|(by[5]<<8)|by[6]};
+}
+function iso(ms){return new Date(ms).toISOString().slice(0,10)}
+function ru(s){return s.split('-').reverse().join('.')}
+function money(n){return String(n).replace(/\B(?=(\d{3})+(?!\d))/g,' ')+' ₽'}
+var runs=null,last=0;
+fetch('prices.json?v='+Date.now()).then(function(r){return r.json()}).then(function(j){runs=j.runs.map(function(x){var p=x[0].split('-').map(Number);return [Date.UTC(p[0],p[1]-1,p[2]),x[1]]});var l=j.last.split('-').map(Number);last=Date.UTC(l[0],l[1]-1,l[2])}).catch(function(){});
+function cur(ci,n){if(!runs)return null;var s=0;for(var t=ci,k=0;k<n;k++,t+=86400000){if(t>last)return null;var r=0;for(var i=0;i<runs.length;i++){if(runs[i][0]<=t)r=runs[i][1];else break}if(!r)return null;s+=r}return s}
+function go(){
+  var o=document.getElementById('o');var d=decode(document.getElementById('c').value);
+  if(!d){o.innerHTML='<div class="card err">Код не распознан. Проверьте, что он скопирован целиком.</div>';return}
+  var ci=Date.UTC(2026,0,1)+d.day*86400000, co=ci+d.nights*86400000;
+  var now=cur(ci,d.nights);
+  o.innerHTML='<div class="card"><div class="row"><span>Заезд</span><b>'+ru(iso(ci))+'</b></div><div class="row"><span>Выезд</span><b>'+ru(iso(co))+'</b></div><div class="row"><span>Ночей</span><b>'+d.nights+'</b></div><div class="row"><span>Гостей</span><b>'+d.guests+'</b></div><div class="row"><span>Сумма в запросе</span><span class="big">'+money(d.sum)+'</span></div>'+
+  (now!==null?'<div class="small" style="margin-top:8px">'+(now===d.sum?'Совпадает с текущей таблицей цен.':'По текущей таблице цен (prices.json) сейчас получилось бы '+money(now)+'.')+'</div>':'')+
+  (d.guests>2?'<div class="small" style="margin-top:6px">Доплата за третьего гостя в сумму не входит.</div>':'')+'</div>';
+}
+document.getElementById('b').onclick=go;
+document.getElementById('c').addEventListener('keydown',function(e){if(e.key==='Enter')go()});
+})();
+</script></body></html>
