@@ -79,6 +79,7 @@ details.q>div{padding:0 0 22px;color:#DCE8F8;max-width:760px}
 .totop{position:fixed;right:16px;bottom:16px;z-index:60;width:46px;height:46px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;justify-content:center;text-decoration:none;font-size:22px;font-weight:700;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.totop{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}@keyframes totopIn{to{opacity:1;visibility:visible}}}@media print{.totop{display:none}}.bookfab{position:fixed;left:16px;bottom:16px;z-index:60;height:46px;padding:0 22px;border-radius:999px;background:#FFFFFF;color:#043385;display:flex;align-items:center;text-decoration:none;font-weight:700;font-size:16px;box-shadow:0 6px 18px rgba(0,10,40,0.45)}@supports (animation-timeline:scroll()){.bookfab{opacity:0;visibility:hidden;animation:totopIn linear both;animation-timeline:scroll(root);animation-range:500px 800px}}@media (min-width:701px){.bookfab{left:auto;right:76px}}@media print{.bookfab{display:none}}@media (min-width:701px){header nav{display:grid!important;grid-template-columns:repeat(8,auto);justify-content:space-between;width:100%;gap:0 12px!important}}@media (max-width:700px){header nav{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:24px;box-sizing:border-box}}.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}.day{min-width:0}@media (max-width:700px){header nav{flex-wrap:nowrap!important;overflow-x:auto;width:100%;gap:0 20px!important;scrollbar-width:none;-webkit-overflow-scrolling:touch}header nav::-webkit-scrollbar{display:none}header nav a{white-space:nowrap;flex:none}}
 .cal .wd{text-align:center;font-size:12px;font-weight:600;letter-spacing:0.08em;color:#D6E4F7;padding:4px 0}
 .day{aspect-ratio:1/1;min-height:40px;border-radius:12px;border:1px solid #2B64C7;background:rgba(0,27,73,0.68);color:#FFFFFF;font:inherit;font-weight:600;font-size:15px;cursor:pointer;padding:0}
+.day:disabled:not(.blank){opacity:.4;cursor:default}
 .day.blank{border:0;background:transparent;cursor:default}
 .day.past{opacity:0.35;cursor:default}
 .day.busy{background:repeating-linear-gradient(135deg,#0A2A66 0 6px,#0D3580 6px 12px);color:#8FA6CF;text-decoration:line-through;cursor:default;border-color:#1E4A9A}
@@ -138,7 +139,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
   <div aria-hidden="true" style="position:fixed;top:0;left:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(rgba(0,26,72,0.30),rgba(0,26,72,0.46)),url(./assets/d4a20f1fbca4406611b74ce711892fd0.jpg) center 46% / cover no-repeat #05204E"></div>
 
   <div class="hero-bg">
-  <a class="bookfab" href="#calendar">Выбрать даты</a>
+  <a class="bookfab" href="{{bookingLink}}" target="_blank" rel="noopener" aria-label="Выбрать даты в Telegram">Выбрать даты</a>
   <a class="totop" href="#top" aria-label="Наверх" title="Наверх">↑</a>
   <!-- NAV -->
   <header style="max-width:1120px;margin:0 auto;padding:16px 20px;background:rgba(1,22,60,0.74);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);border-radius:0 0 20px 20px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;box-sizing:border-box">
@@ -159,9 +160,9 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
     <nav class="nina-nav" aria-label="Главное меню"><a href="#about">Квартира</a>
 <a href="#gallery">Фото</a>
 <a href="#reviews">Отзывы</a>
-<a href="#booking">Условия</a>
+<a href="#calendar">Календарь и условия</a>
 <a href="#favorites">Гид Нины</a>
-<a href="#calendar">Выбрать даты</a></nav>
+<a href="{{bookingLink}}" target="_blank" rel="noopener" aria-label="Выбрать даты в Telegram">Выбрать даты</a></nav>
   </header>
 
   <!-- HERO -->
@@ -170,7 +171,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
 <h1>Квартира с отдельным входом в 300 м от моря</h1>
 <p>Я Нина, хозяйка квартиры. Утром можно выпить кофе в палисаднике и пройтись до пляжа. Для вашей машины есть своё место.</p>
 <p class="nina-facts">41,1 м² · до 3 гостей<br>Заезд с 15:00 · выезд до 12:00</p>
-<div class="nina-actions"><a href="#calendar">Выбрать даты</a><a href="#gallery">Посмотреть квартиру</a></div></div>
+<div class="nina-actions"><a href="{{bookingLink}}" target="_blank" rel="noopener" aria-label="Выбрать даты в Telegram">Выбрать даты</a><a href="#gallery">Посмотреть квартиру</a></div></div>
 <img src="./assets/6e5d74beaa18e2d8f3ed19c1430dd7d7.jpg" alt="Отдельный вход в квартиру с улицы, под козырьком, рядом с палисадником">
 </section>
   <svg viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true" style="display:block;width:100%;height:56px;margin-bottom:-1px"><path d="M0 34 C120 6 240 6 360 34 S600 62 720 34 S960 6 1080 34 S1320 62 1440 34 V60 H0Z" fill="#022664" fill-opacity="0.82"></path></svg>
@@ -307,7 +308,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
       <div style="flex:1 1 320px;min-width:0">
         <div style="font-size:13px;font-weight:600;letter-spacing:0.16em;text-transform:uppercase;color:#B4D7FF;margin-bottom:16px">Планирование поездки</div>
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Выберите даты поездки</h2>
-        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Нажмите на день заезда, затем на день выезда: даты сами подставятся в форму брони ниже.</p>
+        <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Минимальный срок проживания — 7 ночей. Выберите заезд, затем выезд. Например, при заезде 10-го числа самый ранний выезд — 17-го.</p>
         <sc-if value="{{hasBusy}}" hint-placeholder-val="{{false}}">
           <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Полосатые дни заняты. В день выезда другого гостя заехать можно: квартира уже свободна с 15:00.</p>
         </sc-if>
@@ -325,10 +326,11 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
         <div class="cal" style="margin-bottom:6px"><div class="wd">Пн</div><div class="wd">Вт</div><div class="wd">Ср</div><div class="wd">Чт</div><div class="wd">Пт</div><div class="wd">Сб</div><div class="wd">Вс</div></div>
         <div class="cal">
           <sc-for list="{{cells}}" as="c" hint-placeholder-count="35">
-            <button class="{{c.cls}}" aria-label="{{c.label}}" onClick="{{c.pick}}">{{c.n}}</button>
+            <button class="{{c.cls}}" disabled="{{c.disabled}}" aria-label="{{c.label}}" onClick="{{c.pick}}">{{c.n}}</button>
           </sc-for>
         </div>
         <div style="margin-top:16px;font-size:15px;color:#DCE8F8">{{rangeText}}</div>
+        <sc-if value="{{checkin}}"><button type="button" onClick="{{resetDates}}" style="margin-top:12px;padding:8px 14px;border-radius:16px;cursor:pointer">Сбросить даты</button></sc-if>
       </div>
     </div>
   </section>
@@ -339,7 +341,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
         <h2 style="font-family:'Cormorant Garamond',Georgia,serif;font-weight:500;font-size:clamp(34px,6vw,52px);line-height:1.1;margin:0 0 16px">Условия и стоимость</h2>
         <p style="margin:0 0 16px;font-size:17px;color:#DCE8F8;max-width:480px">Выберите даты и число гостей: откроется Telegram с готовым сообщением для Нины. Останется нажать «Отправить».</p>
         
-        <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Я подтвержу доступность, стоимость проживания, минимальный срок и размер депозита для ваших дат.</p>
+        <p style="margin:0;font-size:14px;color:#D6E4F7;max-width:480px">Я подтвержу доступность, стоимость проживания и размер депозита для ваших дат.</p>
       </div>
       <div style="position:relative;flex:1 1 380px;min-width:0;background:rgba(2,38,100,0.85);border:1px solid #2B64C7;border-radius:24px;padding:clamp(20px,4vw,32px);box-sizing:border-box">
         <svg class="peek" viewBox="0 0 90 46" width="84" height="43" aria-hidden="true" style="position:absolute;top:-41px;right:36px;pointer-events:none"><path d="M12 26 L14 3 L33 15 Z M78 26 L76 3 L57 15 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"></path><path d="M17 20 L18 9 L26 15 Z M73 20 L72 9 L64 15 Z" fill="#1E4A9A"></path><path d="M5 46 C5 18 20 8 45 8 C70 8 85 18 85 46 Z" fill="#07163F" stroke="rgba(255,255,255,0.35)" stroke-width="1"></path><ellipse class="catEye" cx="32" cy="30" rx="4" ry="5" fill="#7DBAFF"></ellipse><ellipse class="catEye" cx="58" cy="30" rx="4" ry="5" fill="#7DBAFF"></ellipse><path d="M42 38 L48 38 L45 42 Z" fill="#E7A6B8"></path><path d="M26 40 L10 38 M26 43 L12 46 M64 40 L80 38 M64 43 L78 46" stroke="rgba(255,255,255,0.45)" stroke-width="1" fill="none"></path></svg>
@@ -350,7 +352,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
           </div>
           <div style="flex:1 1 0;min-width:0">
             <label for="co" style="display:block;font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Выезд</label>
-            <input id="co" type="date" value="{{checkout}}" min="{{minCheckout}}" onChange="{{setCheckout}}" style="display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;overflow:hidden;min-height:40px;padding:0 6px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:10px;font:inherit;font-size:14px;-webkit-appearance:none;appearance:none">
+            <input id="co" disabled="{{!checkin}}" type="date" value="{{checkout}}" min="{{minCheckout}}" onChange="{{setCheckout}}" style="display:block;width:100%;min-width:0;max-width:100%;box-sizing:border-box;overflow:hidden;min-height:40px;padding:0 6px;background:#011D4D;color:#FFFFFF;border:1px solid #5381D2;border-radius:10px;font:inherit;font-size:14px;-webkit-appearance:none;appearance:none">
           </div>
         </div>
         <div style="font-size:13px;font-weight:600;color:#DCE8F8;margin-bottom:8px">Гостей (до 3)</div>
@@ -361,9 +363,9 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
         </div>
         <div style="border-top:1px solid #2B64C7;padding-top:16px;margin-bottom:20px;font-size:15px;color:#DCE8F8">{{summary}}</div>
         <sc-if value="{{dateError}}" hint-placeholder-val="{{false}}">
-          <div style="margin-bottom:16px;font-size:14px;color:#FFC2B0">Дата выезда должна быть позже даты заезда: машину времени пока не завезли.</div>
+          <div style="margin-bottom:16px;font-size:14px;color:#FFC2B0">Выберите период от 7 ночей без занятых дат.</div>
         </sc-if>
-        <a href="{{bookingLink}}" target="_blank" rel="noopener" style="display:block;text-align:center;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:17px;padding:17px 24px;border-radius:999px">Уточнить даты и стоимость в Telegram</a>
+        <sc-if value="{{canRequest}}"><a href="{{bookingLink}}" target="_blank" rel="noopener" style="display:block;text-align:center;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:17px;padding:17px 24px;border-radius:999px">Уточнить даты и стоимость в Telegram</a></sc-if>
       </div>
     </div>
   </section>
@@ -479,10 +481,10 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
 <g fill="#04205F"><rect x="58" y="226" width="5" height="72"></rect><rect x="178" y="226" width="5" height="72"></rect><rect x="298" y="226" width="5" height="72"></rect></g>
 <g fill="#FFE2A8"><circle cx="60.5" cy="222" r="9"></circle><circle cx="180.5" cy="222" r="9"></circle><circle cx="300.5" cy="222" r="9"></circle></g>
 <g opacity="0.25" fill="#FFE2A8"><circle cx="60.5" cy="222" r="22"></circle><circle cx="180.5" cy="222" r="22"></circle><circle cx="300.5" cy="222" r="22"></circle></g>
-<g><path d="M338 286h30l-4 22h-22z" fill="#FFFFFF"></path><path d="M368 291q10 0 10 8t-10 8" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path d="M345 276q-5-6 0-12t0-10M358 276q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.8"></path></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Пятница — воскресенье</div>
-        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Уикенд</div>
+<g><path d="M338 286h30l-4 22h-22z" fill="#FFFFFF"></path><path d="M368 291q10 0 10 8t-10 8" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path d="M345 276q-5-6 0-12t0-10M358 276q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.8"></path></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Пятница — пятница</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Неделя с пятницы</div>
         <ul style="margin:0;padding-left:20px;font-size:15px;color:#DCE8F8;flex:1"><li style="margin:0 0 6px">Вылетели в пятницу вечером.</li><li style="margin:0 0 6px">В субботу утром кофе у моря.</li><li style="margin:0 0 6px">В воскресенье закат на променаде и ощущение, что отпуск был дольше.</li></ul>
-        <div style="font-size:15px;color:#E4EEFA;font-style:italic">В понедельник коллеги спросят, где вы взяли такое настроение.</div>
+        <div style="font-size:15px;color:#E4EEFA;font-style:italic">В понедельник впереди ещё несколько дней у моря.</div>
         <div><a href="#booking" onClick="{{planWeekend}}" style="display:inline-block;background:#FFFFFF;color:#043385;text-decoration:none;font-weight:700;font-size:15px;padding:13px 22px;border-radius:999px;border:0;cursor:pointer;font-family:inherit">Запросить эти даты</a></div>
       </div>
       <div style="flex:1 1 300px;min-width:0;position:relative;overflow:hidden;isolation:isolate;background:rgba(0,27,73,0.68);text-shadow:0 0 3px rgba(0,10,40,0.9),0 1px 10px rgba(0,10,40,0.9);border:1px solid #2B64C7;border-radius:18px;padding:24px;box-sizing:border-box;display:flex;flex-direction:column;gap:10px">
@@ -515,7 +517,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
 <rect x="92" y="204" width="84" height="44" rx="3" fill="#2E7BFF"></rect><path d="M100 214h40M100 224h60M100 234h30" stroke="#EAF2FF" stroke-width="3" stroke-linecap="round" opacity="0.85"></path>
 <rect x="58" y="256" width="164" height="8" rx="4" fill="#9CC4FF"></rect>
 <g><path d="M290 232h34l-5 26h-24z" fill="#FFFFFF"></path><path d="M324 238q11 0 11 9t-11 9" fill="none" stroke="#FFFFFF" stroke-width="3"></path><path d="M299 222q-5-6 0-12t0-10M312 222q-5-6 0-12t0-10" fill="none" stroke="#DCE8F8" stroke-width="2.5" stroke-linecap="round" opacity="0.85"></path></g>
-<g fill="#0A1F55"><path d="M340 316c-6-20 8-34 28-34c20 0 32 12 30 30c-1 8-4 12-8 12h-40c-6 0-10-3-10-8z"></path><circle cx="394" cy="288" r="0"></circle></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Воскресенье — пятница</div>
+<g fill="#0A1F55"><path d="M340 316c-6-20 8-34 28-34c20 0 32 12 30 30c-1 8-4 12-8 12h-40c-6 0-10-3-10-8z"></path><circle cx="394" cy="288" r="0"></circle></g></g></svg><div aria-hidden="true" style="position:absolute;left:0;top:0;right:0;bottom:0;z-index:-1;pointer-events:none;background:linear-gradient(180deg,rgba(0,22,62,0.74) 0%,rgba(0,22,62,0.42) 42%,rgba(0,22,62,0.24) 100%)"></div><div style="font-size:13px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:#B4D7FF">Воскресенье — воскресенье</div>
         <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;line-height:1.1">Рабочая неделя у моря</div>
         <ul style="margin:0;padding-left:20px;font-size:15px;color:#DCE8F8;flex:1"><li style="margin:0 0 6px">Wi-Fi через LTE и кофемашина на месте.</li><li style="margin:0 0 6px">Созвон в десять, прогулка вдоль моря в шесть.</li><li style="margin:0 0 6px">Вечером зонт и стульчики на пляже: рабочий день закончен.</li></ul>
         <div style="font-size:15px;color:#E4EEFA;font-style:italic">После работы до пляжа можно дойти пешком.</div>
@@ -649,9 +651,7 @@ input[type=date]::-webkit-calendar-picker-indicator{margin:0 0 0 2px;padding:0}
     <p style="margin:6px 0 0;font-size:13px;color:#D6E4F7">Листайте вбок или нажмите на фото, чтобы открыть его крупно.</p>
   <div id="film" style="margin:0 0 14px">
       <div id="filmbox" data-big="1" style="position:relative;width:100%;box-sizing:border-box">
-          <button id="filmsnd" onClick="{{toggleFilmSound}}" title="Включить звук" aria-label="Включить звук" style="position:absolute;left:12px;bottom:12px;border:0;border-radius:999px;width:46px;height:46px;padding:0;display:flex;align-items:center;justify-content:center;cursor:pointer;background:rgba(255,255,255,0.92);color:#043385;z-index:2"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"></path><path d="M17 9l5 6M22 9l-5 6"></path></svg></button>
-          <button id="filmplay" onClick="{{filmPlay}}" title="Смотреть видео" aria-label="Смотреть видео" style="display:none;position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:52px;height:52px;border:0;border-radius:999px;background:rgba(255,255,255,0.92);color:#043385;align-items:center;justify-content:center;cursor:pointer;z-index:3;padding:0"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg></button>
-          <video onClick="{{toggleFilmPause}}" autoplay="" muted="" loop="" playsinline="" preload="auto" poster="./assets/dcf9692b88699a57ca5f93c7c779cea9.jpg" aria-label="Видео: Зеленоградск и Балтийское море" style="cursor:pointer;display:block;width:100%;height:auto;aspect-ratio:1280/544;min-height:200px;border-radius:18px;object-fit:cover;background:#000">
+          <video controls="" muted="" playsinline="" preload="none" poster="./assets/dcf9692b88699a57ca5f93c7c779cea9.jpg" aria-label="Видео: Зеленоградск и Балтийское море" style="cursor:pointer;display:block;width:100%;height:auto;aspect-ratio:1280/544;min-height:200px;border-radius:18px;object-fit:cover;background:#000">
             <source src="./assets/55f95f5f2c1fb7dbb2f6b5681552f0b5.mp4" type="video/mp4" media="(max-width: 900px)">
             <source src="./assets/4a266c08e1ff41943831eb3848e0d40c.mp4" type="video/mp4">
           </video>
@@ -1014,34 +1014,6 @@ class Component extends DCLogic {
     super(props);
     this.state = { checkin: '', checkout: '', guests: 2, month: 0, reviewOpen: false, reviewSent: false };
     this.state.lb = -1;
-    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
-      const kick = () => {
-        try {
-          document.querySelectorAll('#film video').forEach((v) => {
-            const pl = document.getElementById('filmplay');
-            const showPlay = () => { if (pl && v.paused) pl.style.display = 'flex'; };
-            if (!v.__bound) {
-              v.__bound = true;
-              v.addEventListener('playing', () => { if (pl) pl.style.display = 'none'; const pb = document.getElementById('filmpause'); if (pb) { pb.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>'; pb.title = 'Пауза'; pb.setAttribute('aria-label', 'Пауза'); } });
-              v.addEventListener('pause', () => { const pb = document.getElementById('filmpause'); if (pb) { pb.innerHTML = '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>'; pb.title = 'Продолжить'; pb.setAttribute('aria-label', 'Продолжить'); } setTimeout(showPlay, 400); });
-            }
-            if (!window.__filmSound) { v.muted = true; }
-            v.defaultMuted = !window.__filmSound;
-            v.setAttribute('playsinline', '');
-            v.setAttribute('webkit-playsinline', '');
-            if (v.paused && !window.__filmPaused) {
-              const p = v.play && v.play();
-              if (p && p.catch) p.catch(showPlay);
-              setTimeout(showPlay, 1200);
-            }
-          });
-        } catch (err) {}
-      };
-      window.__filmKick = kick;
-      setTimeout(kick, 300);
-      setTimeout(kick, 1500);
-      setTimeout(kick, 3500);
-    }
     if (typeof fetch !== 'undefined') {
       setTimeout(() => {
     const sunsetOf = (lat, lon, now) => {
@@ -1122,7 +1094,7 @@ class Component extends DCLogic {
     };
     let nights = 0;
     if (checkin && checkout) nights = Math.round((toUtc(checkout) - toUtc(checkin)) / 86400000);
-    const dateError = !!(checkin && checkout && nights <= 0);
+    const dateError = !!(checkin && checkout && nights < 7);
     const guestsText = guests + ' ' + word(guests, 'гость', 'гостя', 'гостей');
     let msg = 'Здравствуйте, Нина! Хочу забронировать квартиру в Зеленоградске.';
     const parts = [];
@@ -1134,7 +1106,7 @@ class Component extends DCLogic {
     msg += ' Подскажите, пожалуйста, доступны ли эти даты, сколько стоит проживание и каковы условия бронирования?';
     const summary = checkin || checkout
       ? parts.map((x) => x.charAt(0).toUpperCase() + x.slice(1)).join(' · ')
-      : 'Выберите даты, затем отправьте запрос. Гостей: ' + guests + '.';
+      : 'Для запроса выберите заезд и выезд на срок от 7 ночей. Гостей: ' + guests + '.';
     const iso = (ms) => new Date(ms).toISOString().slice(0, 10);
     const busy = new Set();
     String(this.props.busyDates ?? '').split(/[,;\n]/).forEach((part) => {
@@ -1148,16 +1120,18 @@ class Component extends DCLogic {
     const daysIn = new Date(Date.UTC(first.getUTCFullYear(), first.getUTCMonth() + 1, 0)).getUTCDate();
     const lead = (first.getUTCDay() + 6) % 7;
     const rangeFree = (a, b) => { for (let t = toUtc(a); t < toUtc(b); t += 86400000) if (busy.has(iso(t))) return false; return true; };
+    const earliestEnd = (start) => iso(toUtc(start) + 7 * 86400000);
+    const validStay = (start, end) => Boolean(start && end && start >= today &&
+      end >= earliestEnd(start) && rangeFree(start, end));
+    const choosingEnd = Boolean(checkin && !checkout);
+    const available = (day) => choosingEnd ? validStay(checkin, day) :
+      day >= today && rangeFree(day, earliestEnd(day));
     const pick = (day) => () => {
-      if (day < today) return;
-      const s2 = this.state || {};
-      const ci = s2.checkin || '', co = s2.checkout || '';
-      if (ci && !co && day > ci && rangeFree(ci, day)) { this.setState({ checkout: day }); return; }
-      if (busy.has(day)) return;
-      this.setState({ checkin: day, checkout: '' });
+      if (!available(day)) return;
+      this.setState(choosingEnd ? { checkout: day } : { checkin: day, checkout: '' });
     };
     const cells = [];
-    for (let i = 0; i < lead; i++) cells.push({ cls: 'day blank', n: '', label: '', pick: () => {} });
+    for (let i = 0; i < lead; i++) cells.push({ cls: 'day blank', disabled: true, n: '', label: '', pick: () => {} });
     for (let n = 1; n <= daysIn; n++) {
       const day = iso(Date.UTC(first.getUTCFullYear(), first.getUTCMonth(), n));
       const cls = ['day'];
@@ -1166,11 +1140,11 @@ class Component extends DCLogic {
       if (day === today) cls.push('today');
       if (day === checkin || day === checkout) cls.push('sel');
       else if (checkin && checkout && day > checkin && day < checkout) cls.push('rng');
-      cells.push({ cls: cls.join(' '), n: String(n), label: fmt(day) + (busy.has(day) ? ', занято' : ''), pick: pick(day) });
+      cells.push({ disabled: !available(day), cls: cls.join(' '), n: String(n), label: fmt(day) + (busy.has(day) ? ', занято' : ''), pick: pick(day) });
     }
     const rangeText = checkin && checkout && nights > 0
       ? 'Выбрано: ' + fmt(checkin) + ' → ' + fmt(checkout) + ', ' + nights + ' ' + word(nights, 'ночь', 'ночи', 'ночей') + '. Даты уже в форме брони ниже.'
-      : checkin ? 'Заезд ' + fmt(checkin) + '. Теперь выберите день выезда.' : 'Даты пока не выбраны.';
+      : checkin ? 'Заезд ' + fmt(checkin) + '. Выезд возможен с ' + fmt(earliestEnd(checkin)) + '.' : 'Даты пока не выбраны.';
     const placeCats = ["Закат", "Прогулка", "Кофе", "Ужин", "Покупки", "Море"];
     const places = [1, 2, 3, 4, 5, 6].map((i) => {
       const name = String(this.props['place' + i + 'Name'] ?? '').trim();
@@ -1186,6 +1160,7 @@ class Component extends DCLogic {
       const cur = new Date(t0).getUTCDay();
       let add = (dow - cur + 7) % 7;
       if (add === 0) add = 7;
+      while (!rangeFree(iso(t0 + add * 86400000), iso(t0 + (add + nights) * 86400000))) add += 7;
       const ci = iso(t0 + add * 86400000);
       const co = iso(t0 + (add + nights) * 86400000);
       const tp = today.split('-').map(Number), cp = ci.split('-').map(Number);
@@ -1236,6 +1211,12 @@ class Component extends DCLogic {
     const lbIdx = st.lb == null ? -1 : st.lb;
     const lbCur = lbIdx >= 0 && lbList[lbIdx] ? lbList[lbIdx] : null;
     const base = 'https://t.me/' + encodeURIComponent(u);
+    const completeStay = validStay(checkin, checkout);
+    if (!completeStay) {
+      const preferredArrival = checkin && checkin >= today ? ' Желаемый заезд — ' + fmt(checkin) + '.' : '';
+      msg = 'Здравствуйте, Нина! Хочу подобрать свободные даты для проживания от 7 ночей.' +
+        preferredArrival + ' Гостей: ' + guests + '. Какие варианты и стоимость можете предложить?';
+    }
     return {
       cells: cells, places: places, rangeText: rangeText, hasBusy: busy.size > 0, noBusy: busy.size === 0,
       monthTitle: monthNames[first.getUTCMonth()] + ' ' + first.getUTCFullYear(),
@@ -1283,59 +1264,9 @@ class Component extends DCLogic {
         try { document.body.style.overflow = 'hidden'; } catch (err) {}
         this.setState({ lbList: list, lb: Math.max(0, links.indexOf(a)) });
       },
-      filmPlay: (e) => {
-        try {
-          const v = document.querySelector('#film video');
-          const pl = document.getElementById('filmplay');
-          if (!v) return;
-          window.__filmPaused = false;
-          v.muted = !window.__filmSound;
-          const p = v.play && v.play();
-          if (p && p.catch) p.catch(() => {});
-          if (pl) pl.style.display = 'none';
-        } catch (err) {}
-      },
-      toggleFilmPause: (e) => {
-        try {
-          const v = document.querySelector('#film video');
-          if (!v) return;
-          if (v.paused) {
-            window.__filmPaused = false;
-            const p = v.play && v.play();
-            if (p && p.catch) p.catch(() => {});
-          } else {
-            window.__filmPaused = true;
-            v.pause();
-          }
-        } catch (err) {}
-      },
-      toggleFilmSound: (e) => {
-        try {
-          const v = document.querySelector('#film video');
-          const btn = document.getElementById('filmsnd');
-          if (!v) return;
-          const on = v.muted;
-          v.muted = !on;
-          window.__filmSound = on;
-          if (on) { const p = v.play && v.play(); if (p && p.catch) p.catch(() => {}); const pl = document.getElementById('filmplay'); if (pl) pl.style.display = 'none'; }
-          if (btn) { btn.innerHTML = on ? '<svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M16.5 8.5a5 5 0 0 1 0 7M19 6a8.5 8.5 0 0 1 0 12"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 9h4l5-4v14l-5-4H4z" fill="currentColor"/><path d="M17 9l5 6M22 9l-5 6"/></svg>'; btn.title = on ? 'Выключить звук' : 'Включить звук'; btn.setAttribute('aria-label', btn.title); }
-        } catch (err) {}
-      },
-      toggleFilm: (e) => {
-        try {
-          const box = document.getElementById('filmbox');
-          const btn = document.getElementById('filmbtn');
-          if (!box) return;
-          const big = box.getAttribute('data-big') === '1';
-          box.setAttribute('data-big', big ? '0' : '1');
-          const wrap = document.getElementById('film');
-          if (wrap) { wrap.style.maxWidth = big ? '80%' : '100%'; }
-          if (btn) { btn.innerHTML = big ? '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M10 20H4v-6M20 4l-7 7M4 20l7-7"/></svg>' : '<svg viewBox="0 0 24 24" width="14" height="14" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10h-6V4M4 14h6v6M14 10l7-7M10 14l-7 7"/></svg>'; btn.title = big ? 'Развернуть' : 'Свернуть'; btn.setAttribute('aria-label', btn.title); }
-        } catch (err) {}
-      },
-      planWeekend: setPlan(5, 2),
+      planWeekend: setPlan(5, 7),
       planWeek: setPlan(6, 7),
-      planRemote: setPlan(0, 5),
+      planRemote: setPlan(0, 7),
       hasWx: !!wx,
       wxLoading: !wx && st.wxState !== 'fail',
       wxFail: !wx && st.wxState === 'fail',
@@ -1372,13 +1303,23 @@ class Component extends DCLogic {
       today: today,
       checkin: checkin,
       checkout: checkout,
-      minCheckout: checkin || today,
+      minCheckout: earliestEnd(checkin || today),
+      canRequest: completeStay,
+      resetDates: () => this.setState({checkin: "", checkout: ""}),
       guests: guests,
       summary: summary,
       dateError: dateError,
       bookingLink: base + '?text=' + encodeURIComponent(msg),
-      setCheckin: (e) => this.setState({ checkin: e.target.value }),
-      setCheckout: (e) => this.setState({ checkout: e.target.value }),
+      setCheckin: (e) => {
+        const start = e.target.value;
+        if (start && (start < today || !rangeFree(start, earliestEnd(start)))) { e.target.value = checkin; return; }
+        this.setState({ checkin: start, checkout: validStay(start, checkout) ? checkout : '' });
+      },
+      setCheckout: (e) => {
+        const end = e.target.value;
+        if (end && !validStay(checkin, end)) { e.target.value = checkout; return; }
+        this.setState({ checkout: end });
+      },
       guestsInc: () => this.setState({ guests: Math.min(3, guests + 1) }),
       guestsDec: () => this.setState({ guests: Math.max(1, guests - 1) })
     };
